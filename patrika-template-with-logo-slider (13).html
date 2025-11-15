@@ -1,0 +1,3585 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patrika - Professional Social Media Designer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700;900&family=Noto+Sans+Devanagari:wght@300;400;500;600;700;900&family=Poppins:wght@300;400;500;600;700;900&family=Georgia&family=Crimson+Pro:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&family=Merriweather:wght@300;400;700;900&family=Source+Sans+Pro:wght@300;400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 0;
+            color: #1a1a1a;
+        }
+        
+        .app-header {
+            background: #ffffff;
+            padding: 25px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.95);
+        }
+        
+        .header-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-badge {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #d4af37, #f4e4bc);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 20px;
+            color: #000;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .app-title {
+            font-size: 24px;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            color: #1a1a1a;
+        }
+        
+        .app-subtitle {
+            font-size: 12px;
+            color: #666;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .platform-selector {
+            display: flex;
+            gap: 12px;
+            background: #f8f9fa;
+            padding: 6px;
+            border-radius: 12px;
+        }
+        
+        .platform-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .platform-btn {
+            padding: 12px 24px;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+        }
+        
+        .platform-btn:hover {
+            background: rgba(0,0,0,0.05);
+        }
+        
+        .platform-btn.active {
+            background: #ffffff;
+            color: #1a1a1a;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .dropdown-arrow {
+            font-size: 10px;
+            transition: transform 0.3s;
+            margin-left: 4px;
+        }
+        
+        .platform-btn.open .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        
+        .platform-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 200px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            margin-top: 8px;
+            display: none;
+            z-index: 1000;
+            overflow: hidden;
+        }
+        
+        .platform-menu.show {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .menu-item {
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-size: 13px;
+            color: #333;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        
+        .menu-item:hover {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .current-format {
+            display: inline-block;
+            margin-left: 8px;
+            padding: 2px 8px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            font-size: 11px;
+            color: #666;
+        }
+        
+        .main-container {
+            max-width: 1600px;
+            margin: 30px auto;
+            padding: 0 30px;
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 30px;
+            align-items: start;
+        }
+        
+        .canvas-section {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+        
+        .canvas-wrapper {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 500px;
+            position: relative;
+        }
+        
+        #newsCanvas {
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            max-width: 100%;
+            height: auto;
+            cursor: move;
+        }
+        
+        .controls-panel {
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            overflow: hidden;
+            max-height: calc(100vh - 140px);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .controls-header {
+            padding: 20px 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .controls-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .controls-subtitle {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        .controls-body {
+            padding: 0;
+            overflow-y: auto;
+            flex: 1;
+        }
+        
+        .accordion-section {
+            border-bottom: 1px solid #e5e7eb;
+            overflow: hidden;
+        }
+        
+        .accordion-section:last-of-type {
+            border-bottom: none;
+        }
+        
+        .accordion-header {
+            padding: 20px 25px;
+            background: #ffffff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+        
+        .accordion-header:hover {
+            background: linear-gradient(90deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+        }
+        
+        .accordion-header.active {
+            background: linear-gradient(90deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-left: 3px solid #667eea;
+            padding-left: 22px;
+        }
+        
+        .accordion-title-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .accordion-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: white;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.25);
+            transition: transform 0.3s ease;
+        }
+        
+        .accordion-header:hover .accordion-icon {
+            transform: scale(1.05);
+        }
+        
+        .accordion-header.active .accordion-icon {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.35);
+        }
+        
+        .accordion-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .accordion-arrow {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #667eea;
+            transition: transform 0.3s ease;
+        }
+        
+        .accordion-arrow svg {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .accordion-header.active .accordion-arrow {
+            transform: rotate(180deg);
+        }
+        
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #fafafa;
+        }
+        
+        .accordion-content.active {
+            max-height: 2000px;
+        }
+        
+        .accordion-inner {
+            padding: 25px;
+        }
+        
+        .action-section {
+            padding: 25px;
+            background: #ffffff;
+            border-top: 2px solid #e5e7eb;
+        }
+        
+        .control-section {
+            margin-bottom: 0;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .section-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+        
+        .section-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .control-group {
+            margin-bottom: 20px;
+        }
+        
+        .control-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 8px;
+        }
+        
+        .control-input,
+        .control-textarea,
+        .control-select {
+            width: 100%;
+            padding: 12px 14px;
+            background: #f8f9fa;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            font-size: 14px;
+            font-family: 'Inter', 'Noto Sans Devanagari', sans-serif;
+            transition: all 0.3s;
+            color: #1a1a1a;
+        }
+        
+        .control-input:focus,
+        .control-textarea:focus,
+        .control-select:focus {
+            outline: none;
+            border-color: #667eea;
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+        
+        .control-textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .color-input-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .color-picker {
+            width: 60px;
+            height: 40px;
+            padding: 0;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        .color-code-input {
+            flex: 1;
+            padding: 10px 12px;
+            background: #f8f9fa;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'monospace';
+            transition: all 0.3s;
+        }
+        
+        .color-code-input:focus {
+            outline: none;
+            border-color: #667eea;
+            background: #ffffff;
+        }
+        
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        
+        .template-card {
+            padding: 14px;
+            background: #f8f9fa;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            color: #666;
+        }
+        
+        .template-card:hover {
+            background: #ffffff;
+            border-color: #e2e8f0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        
+        .template-card.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: transparent;
+        }
+        
+        .slider-control {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .slider {
+            flex: 1;
+            -webkit-appearance: none;
+            height: 6px;
+            border-radius: 3px;
+            background: #e2e8f0;
+            outline: none;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        
+        .slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        
+        .slider-value {
+            min-width: 45px;
+            text-align: center;
+            font-weight: 700;
+            color: #667eea;
+            font-size: 14px;
+        }
+        
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 8px;
+            margin-top: 12px;
+        }
+        
+        .color-swatch {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .color-swatch:hover {
+            transform: scale(1.1);
+            border-color: #667eea;
+        }
+        
+        .checkbox-control {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .checkbox-control:hover {
+            background: #e2e8f0;
+        }
+        
+        .checkbox-control input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        .checkbox-control label {
+            flex: 1;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            color: #4a5568;
+        }
+        
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #4a5568;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .btn-success {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+        }
+        
+        .palette-section {
+            margin-bottom: 15px;
+        }
+        
+        .palette-title {
+            font-size: 11px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        
+        /* File upload with clear button */
+        .file-upload-group {
+            position: relative;
+        }
+        
+        .file-clear-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #ff4444;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            display: none;
+            font-size: 16px;
+            line-height: 1;
+        }
+        
+        .file-upload-group.has-file .file-clear-btn {
+            display: block;
+        }
+        
+        /* Custom resolution inputs */
+        .resolution-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        /* Image editor modal */
+        .image-editor-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .image-editor-content {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .editor-canvas-wrapper {
+            position: relative;
+            margin: 20px 0;
+            border: 2px dashed #667eea;
+            border-radius: 8px;
+            overflow: hidden;
+            display: inline-block;
+        }
+        
+        #editorCanvas {
+            max-width: 100%;
+            display: block;
+        }
+        
+        .crop-box {
+            position: absolute;
+            border: 2px solid #667eea;
+            background: rgba(102, 126, 234, 0.2);
+            cursor: move;
+        }
+        
+        .crop-handle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #667eea;
+            border: 2px solid white;
+        }
+        
+        .crop-handle.nw { top: -5px; left: -5px; cursor: nw-resize; }
+        .crop-handle.ne { top: -5px; right: -5px; cursor: ne-resize; }
+        .crop-handle.sw { bottom: -5px; left: -5px; cursor: sw-resize; }
+        .crop-handle.se { bottom: -5px; right: -5px; cursor: se-resize; }
+        
+        .editor-controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        /* Scrollbar */
+        .controls-body::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .controls-body::-webkit-scrollbar-track {
+            background: #f8f9fa;
+            border-radius: 3px;
+        }
+        
+        .controls-body::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 3px;
+        }
+        
+        @media (max-width: 1200px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .controls-panel {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo-badge">P</div>
+                <div>
+                    <div class="app-title">Patrika Social Designer</div>
+                    <div class="app-subtitle">Professional News Post Generator</div>
+                </div>
+            </div>
+            <div class="platform-selector">
+                <div class="platform-dropdown">
+                    <button class="platform-btn active" onclick="togglePlatformMenu('facebook')">
+                        📘 Facebook <span class="dropdown-arrow">▼</span>
+                    </button>
+                    <div class="platform-menu" id="facebook-menu">
+                        <div class="menu-item" onclick="setPlatformFormat('facebook', 'post', '1200×630px')">Feed Post (1200×630)</div>
+                        <div class="menu-item" onclick="setPlatformFormat('facebook', 'square', '1080×1080px')">Square Post (1080×1080)</div>
+                        <div class="menu-item" onclick="setPlatformFormat('facebook', 'story', '1080×1920px')">Story (1080×1920)</div>
+                        <div class="menu-item" onclick="setPlatformFormat('facebook', 'cover', '1640×859px')">Cover Photo (1640×859)</div>
+                        <div class="menu-item" onclick="setPlatformFormat('facebook', 'event', '1920×1080px')">Event Cover (1920×1080)</div>
+                    </div>
+                </div>
+                <div class="platform-dropdown">
+                    <button class="platform-btn" onclick="togglePlatformMenu('instagram')">
+                        📷 Instagram <span class="dropdown-arrow">▼</span>
+                    </button>
+                    <div class="platform-menu" id="instagram-menu">
+                        <div class="menu-item" onclick="setPlatformFormat('instagram', 'post', '1080×1080px')">Feed Post (1080×1080)</div>
+                        <div class="menu-item" onclick="setPlatformFormat('instagram', 'portrait', '1080×1350px')">Portrait (1080×1350)</div>
+                        <div class="menu-item" onclick="setPlatformFormat('instagram', 'landscape', '1080×608px')">Landscape (1080×608)</div>
+                        <div class="menu-item" onclick="setPlatformFormat('instagram', 'story', '1080×1920px')">Story/Reel (1080×1920)</div>
+                        <div class="menu-item" onclick="setPlatformFormat('instagram', 'igtv', '1080×1350px')">IGTV Cover (1080×1350)</div>
+                    </div>
+                </div>
+                <div class="platform-dropdown">
+                    <button class="platform-btn" onclick="togglePlatformMenu('twitter')">
+                        🐦 Twitter <span class="dropdown-arrow">▼</span>
+                    </button>
+                    <div class="platform-menu" id="twitter-menu">
+                        <div class="menu-item" onclick="setPlatformFormat('twitter', 'post', '1200×675px')">Tweet Image (1200×675)</div>
+                        <div class="menu-item" onclick="setPlatformFormat('twitter', 'square', '1200×1200px')">Square Post (1200×1200)</div>
+                        <div class="menu-item" onclick="setPlatformFormat('twitter', 'header', '1500×500px')">Header (1500×500)</div>
+                        <div class="menu-item" onclick="setPlatformFormat('twitter', 'card', '1200×628px')">Summary Card (1200×628)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="main-container">
+        <div class="canvas-section">
+            <div class="canvas-wrapper">
+                <canvas id="newsCanvas"></canvas>
+            </div>
+        </div>
+        
+        <div class="controls-panel">
+            <div class="controls-header">
+                <div class="controls-title">Design Controls</div>
+                <div class="controls-subtitle">Customize your post</div>
+            </div>
+            
+            <div class="controls-body">
+                <!-- Format & Template Accordion -->
+                <div class="accordion-section">
+                    <div class="accordion-header active" onclick="toggleAccordion(this)">
+                        <div class="accordion-title-wrapper">
+                            <div class="accordion-icon">📄</div>
+                            <div class="accordion-title">Format & Template</div>
+                        </div>
+                        <div class="accordion-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="accordion-content active">
+                        <div class="accordion-inner">
+                            <div class="control-section">
+                    <div class="section-header">
+                        
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label">Quick Resize Options</label>
+                        <select class="control-select" id="postFormat" onchange="updateCanvasSize()">
+                            <option value="current">Current Size</option>
+                            <option value="square">Square (1:1)</option>
+                            <option value="landscape">Landscape (16:9)</option>
+                            <option value="portrait">Portrait (4:5)</option>
+                            <option value="story">Story (9:16)</option>
+                            <option value="custom">Custom Size</option>
+                        </select>
+                    </div>
+                    
+                    <div class="control-group" id="customResolution" style="display:none;">
+                        <label class="control-label">Custom Resolution (px)</label>
+                        <div class="resolution-inputs">
+                            <input type="number" class="control-input" id="customWidth" placeholder="Width" value="1080" min="100" max="4000">
+                            <input type="number" class="control-input" id="customHeight" placeholder="Height" value="1080" min="100" max="4000">
+                        </div>
+                        <button class="btn btn-secondary" style="margin-top:10px" onclick="applyCustomResolution()">Apply Size</button>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label">Design Template</label>
+                        <div class="template-grid">
+                            <div class="template-card active" onclick="selectTemplate('modern')">
+                                <div style="font-weight: 700;">Modern</div>
+                                <div style="font-size: 10px; margin-top: 4px; font-weight: 400;">Clean Social Media</div>
+                            </div>
+                            <div class="template-card" onclick="selectTemplate('editorial')">
+                                <div style="font-weight: 700;">Editorial</div>
+                                <div style="font-size: 10px; margin-top: 4px; font-weight: 400;">NYT Premium Style</div>
+                            </div>
+                            <div class="template-card" onclick="selectTemplate('bold')">
+                                <div style="font-weight: 700;">Bold</div>
+                                <div style="font-size: 10px; margin-top: 4px; font-weight: 400;">Breaking News</div>
+                            </div>
+                            <div class="template-card" onclick="selectTemplate('minimal')">
+                                <div style="font-weight: 700;">Minimal</div>
+                                <div style="font-size: 10px; margin-top: 4px; font-weight: 400;">Swiss Design</div>
+                            </div>
+                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Content Accordion -->
+                <div class="accordion-section">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title-wrapper">
+                            <div class="accordion-icon">✏️</div>
+                            <div class="accordion-title">Content</div>
+                        </div>
+                        <div class="accordion-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-inner">
+                            <div class="control-section">
+                    
+                    <div class="control-group">
+                        <label class="control-label">Content Type</label>
+                        <select class="control-select" id="contentType" onchange="toggleContentFields()">
+                            <option value="news">News/Article</option>
+                            <option value="quote">Quote</option>
+                        </select>
+                    </div>
+                    
+                    <div id="newsFields">
+                        <div class="control-group">
+                            <label class="control-label">Category Tag</label>
+                            <input type="text" class="control-input" id="category" value="ब्रेकिंग न्यूज़" oninput="updateCanvas()">
+                        </div>
+                        
+                        <div class="control-group">
+                            <label class="control-label">Category Tag Size</label>
+                            <div class="slider-control">
+                                <input type="range" class="slider" id="categorySize" min="10" max="24" value="14" oninput="updateCanvas()">
+                                <span class="slider-value" id="categorySizeValue">14</span>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label class="control-label">Category-Headline Spacing</label>
+                            <div class="slider-control">
+                                <input type="range" class="slider" id="categorySpacing" min="10" max="100" value="30" oninput="updateCanvas()">
+                                <span class="slider-value" id="categorySpacingValue">30px</span>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label class="control-label">Headline</label>
+                            <textarea class="control-textarea" id="headline" oninput="updateCanvas()">राजस्थान में डिजिटल क्रांति की नई शुरुआत</textarea>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label class="control-label">Headline Size</label>
+                            <div class="slider-control">
+                                <input type="range" class="slider" id="headlineSize" min="24" max="72" value="48" oninput="updateCanvas()">
+                                <span class="slider-value" id="headlineSizeValue">48</span>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label class="control-label">Headline-Subheadline Spacing</label>
+                            <div class="slider-control">
+                                <input type="range" class="slider" id="headlineSubheadlineSpacing" min="0" max="100" value="35" oninput="updateCanvas()">
+                                <span class="slider-value" id="headlineSubheadlineSpacingValue">35px</span>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label class="control-label">Subheadline</label>
+                            <input type="text" class="control-input" id="subheadline" value="प्रदेश के 33 जिलों में हाई-स्पीड इंटरनेट" oninput="updateCanvas()">
+                        </div>
+                        
+                        <div class="control-group">
+                            <label class="control-label">Subheadline Size</label>
+                            <div class="slider-control">
+                                <input type="range" class="slider" id="subheadlineSize" min="12" max="48" value="22" oninput="updateCanvas()">
+                                <span class="slider-value" id="subheadlineSizeValue">22</span>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label class="control-label">Subheadline-Body Spacing</label>
+                            <div class="slider-control">
+                                <input type="range" class="slider" id="subheadlineBodySpacing" min="0" max="100" value="30" oninput="updateCanvas()">
+                                <span class="slider-value" id="subheadlineBodySpacingValue">30px</span>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label class="control-label">Body Text</label>
+                            <textarea class="control-textarea" id="content" oninput="updateCanvas()">मुख्यमंत्री ने आज राज्य के डिजिटल इंफ्रास्ट्रक्चर को मजबूत करने के लिए 5000 करोड़ रुपये की योजना की घोषणा की।</textarea>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label class="control-label">Body Text Size</label>
+                            <div class="slider-control">
+                                <input type="range" class="slider" id="bodySize" min="10" max="48" value="16" oninput="updateCanvas()">
+                                <span class="slider-value" id="bodySizeValue">16</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="quoteFields" style="display:none;">
+                        <div class="control-group">
+                            <label class="control-label">Quote Text</label>
+                            <textarea class="control-textarea" id="quoteText" oninput="updateCanvas()">It's perfect for someone like me, whose style skews middle schooler and whose back skews middle-aged.</textarea>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label class="control-label">Quote Top Position (%)</label>
+                            <div class="slider-control">
+                                <input type="range" class="slider" id="quoteTopPosition" min="10" max="60" value="25" oninput="updateQuotePosition()">
+                                <span class="slider-value" id="quoteTopPositionValue">25%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label class="control-label">Author Name</label>
+                            <input type="text" class="control-input" id="authorName" value="Maria Adelmann" oninput="updateCanvas()">
+                        </div>
+                        
+                        <div class="control-group">
+                            <label class="control-label">Author Title/Description</label>
+                            <input type="text" class="control-input" id="authorTitle" value="a travel writer" oninput="updateCanvas()">
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label">Photo Credit</label>
+                        <input type="text" class="control-input" id="photoCredit" placeholder="Photo: Name/Source" oninput="updateCanvas()">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Typography Accordion -->
+                <div class="accordion-section">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title-wrapper">
+                            <div class="accordion-icon">🎨</div>
+                            <div class="accordion-title">Typography</div>
+                        </div>
+                        <div class="accordion-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-inner">
+                            <div class="control-section">
+                    
+                    <div class="control-group">
+                        <label class="control-label">Category Font</label>
+                        <select class="control-select" id="categoryFont" onchange="updateCanvas()">
+                            <option value="'Inter', sans-serif">Inter</option>
+                            <option value="'Poppins', sans-serif">Poppins</option>
+                            <option value="'Playfair Display', serif">Playfair Display</option>
+                            <option value="'Crimson Pro', serif">Crimson Pro</option>
+                            <option value="'Lora', serif">Lora</option>
+                            <option value="'Merriweather', serif">Merriweather</option>
+                            <option value="Georgia, serif">Georgia</option>
+                            <option value="'Noto Sans Devanagari', sans-serif">Noto Sans (Hindi)</option>
+                            <option value="'Source Sans Pro', sans-serif">Source Sans Pro</option>
+                        </select>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label">Headline Font</label>
+                        <select class="control-select" id="headlineFont" onchange="updateCanvas()">
+                            <option value="'Playfair Display', serif">Playfair Display</option>
+                            <option value="'Crimson Pro', serif">Crimson Pro</option>
+                            <option value="'Lora', serif">Lora</option>
+                            <option value="'Merriweather', serif">Merriweather</option>
+                            <option value="Georgia, serif">Georgia</option>
+                            <option value="'Noto Sans Devanagari', sans-serif">Noto Sans (Hindi)</option>
+                            <option value="'Inter', sans-serif">Inter</option>
+                            <option value="'Poppins', sans-serif">Poppins</option>
+                        </select>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label">Subheadline Font</label>
+                        <select class="control-select" id="subheadlineFont" onchange="updateCanvas()">
+                            <option value="'Inter', sans-serif">Inter</option>
+                            <option value="'Source Sans Pro', sans-serif">Source Sans Pro</option>
+                            <option value="'Poppins', sans-serif">Poppins</option>
+                            <option value="'Playfair Display', serif">Playfair Display</option>
+                            <option value="'Crimson Pro', serif">Crimson Pro</option>
+                            <option value="'Lora', serif">Lora</option>
+                            <option value="'Merriweather', serif">Merriweather</option>
+                            <option value="Georgia, serif">Georgia</option>
+                            <option value="'Noto Sans Devanagari', sans-serif">Noto Sans (Hindi)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label">Body Text Font</label>
+                        <select class="control-select" id="bodyFont" onchange="updateCanvas()">
+                            <option value="'Inter', sans-serif">Inter</option>
+                            <option value="'Source Sans Pro', sans-serif">Source Sans Pro</option>
+                            <option value="'Poppins', sans-serif">Poppins</option>
+                            <option value="Georgia, serif">Georgia</option>
+                            <option value="'Noto Sans Devanagari', sans-serif">Noto Sans (Hindi)</option>
+                            <option value="'Merriweather', serif">Merriweather</option>
+                            <option value="'Lora', serif">Lora</option>
+                            <option value="'Crimson Pro', serif">Crimson Pro</option>
+                        </select>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label">Footer Font</label>
+                        <select class="control-select" id="footerFont" onchange="updateCanvas()">
+                            <option value="'Poppins', sans-serif">Poppins</option>
+                            <option value="'Inter', sans-serif">Inter</option>
+                            <option value="'Playfair Display', serif">Playfair Display</option>
+                            <option value="'Source Sans Pro', sans-serif">Source Sans Pro</option>
+                            <option value="'Noto Sans Devanagari', sans-serif">Noto Sans (Hindi)</option>
+                            <option value="Georgia, serif">Georgia</option>
+                        </select>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label">Footer Size</label>
+                        <div class="slider-control">
+                            <input type="range" class="slider" id="footerSize" min="10" max="48" value="14" oninput="updateCanvas()">
+                            <span class="slider-value" id="footerSizeValue">14</span>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label">Letter Spacing</label>
+                        <div class="slider-control">
+                            <input type="range" class="slider" id="letterSpacing" min="-2" max="5" value="0" step="0.5" oninput="updateCanvas()">
+                            <span class="slider-value" id="letterSpacingValue">0px</span>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label">Line Height</label>
+                        <div class="slider-control">
+                            <input type="range" class="slider" id="lineHeight" min="100" max="200" value="140" oninput="updateCanvas()">
+                            <span class="slider-value" id="lineHeightValue">1.4</span>
+                        </div>
+                    </div>
+                    
+                    <div class="checkbox-control">
+                        <input type="checkbox" id="enableShadow" onchange="updateCanvas()">
+                        <label for="enableShadow">Enable Text Shadow</label>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label">Text Alignment</label>
+                        <select class="control-select" id="textAlign" onchange="updateCanvas()">
+                            <option value="left">Left</option>
+                            <option value="center">Center</option>
+                            <option value="right">Right</option>
+                        </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Colors & Backgrounds Accordion -->
+                <div class="accordion-section">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title-wrapper">
+                            <div class="accordion-icon">🎨</div>
+                            <div class="accordion-title">Colors & Backgrounds</div>
+                        </div>
+                        <div class="accordion-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-inner">
+                            <div class="control-section">
+                    
+                    <div class="control-group">
+                        <label class="control-label">Background Color</label>
+                        <div class="color-input-group">
+                            <input type="color" class="color-picker" id="backgroundColor" value="#f7f8fa" oninput="syncColorInput('backgroundColor')">
+                            <input type="text" class="color-code-input" id="backgroundColorCode" value="#f7f8fa" placeholder="#RRGGBB" oninput="syncColorPicker('backgroundColor')">
+                        </div>
+                        
+                        <div class="palette-section">
+                            <div class="palette-title">Editorial Palette</div>
+                            <div class="color-palette">
+                                <div class="color-swatch" style="background:#f7f8fa" onclick="setBackgroundColor('#f7f8fa')"></div>
+                                <div class="color-swatch" style="background:#e8edf3" onclick="setBackgroundColor('#e8edf3')"></div>
+                                <div class="color-swatch" style="background:#d6dce5" onclick="setBackgroundColor('#d6dce5')"></div>
+                                <div class="color-swatch" style="background:#faf9f7" onclick="setBackgroundColor('#faf9f7')"></div>
+                                <div class="color-swatch" style="background:#f3f0e8" onclick="setBackgroundColor('#f3f0e8')"></div>
+                                <div class="color-swatch" style="background:#ffffff" onclick="setBackgroundColor('#ffffff')"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label">Text Color</label>
+                        <div class="color-input-group">
+                            <input type="color" class="color-picker" id="primaryTextColor" value="#1a1a1a" oninput="syncColorInput('primaryTextColor')">
+                            <input type="text" class="color-code-input" id="primaryTextColorCode" value="#1a1a1a" placeholder="#RRGGBB" oninput="syncColorPicker('primaryTextColor')">
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label">Accent Color</label>
+                        <div class="color-input-group">
+                            <input type="color" class="color-picker" id="accentColor" value="#667eea" oninput="syncColorInput('accentColor')">
+                            <input type="text" class="color-code-input" id="accentColorCode" value="#667eea" placeholder="#RRGGBB" oninput="syncColorPicker('accentColor')">
+                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Media & Layout Accordion -->
+                <div class="accordion-section">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title-wrapper">
+                            <div class="accordion-icon">🖼️</div>
+                            <div class="accordion-title">Media & Layout</div>
+                        </div>
+                        <div class="accordion-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-inner">
+                            <div class="control-section">
+                    
+                    <div class="control-group">
+                        <label class="control-label">Upload Background Image (Double-click to edit)</label>
+                        <div class="file-upload-group" id="imageUploadGroup">
+                            <input type="file" class="control-input" id="imageUpload" accept="image/*" onchange="handleImageUpload(event)">
+                            <button class="file-clear-btn" onclick="clearImage()">×</button>
+                        </div>
+                    </div>
+                    
+                    <div class="checkbox-control">
+                        <input type="checkbox" id="overlayText" onchange="toggleImageOptions()">
+                        <label for="overlayText">Text Over Image</label>
+                    </div>
+                    
+                    <div class="control-group" id="overlayOpacityGroup" style="display:none;">
+                        <label class="control-label">Overlay Darkness</label>
+                        <div class="slider-control">
+                            <input type="range" class="slider" id="overlayOpacity" min="0" max="100" value="50" oninput="updateCanvas()">
+                            <span class="slider-value" id="overlayOpacityValue">50%</span>
+                        </div>
+                    </div>
+                    
+                    <div id="imageLayoutOptions" style="display:block;">
+                        <div class="checkbox-control">
+                            <input type="checkbox" id="fullWidthImage" onchange="toggleFullWidthOptions()">
+                            <label for="fullWidthImage">Full Width Image</label>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label class="control-label">Image Corner Radius</label>
+                            <div class="slider-control">
+                                <input type="range" class="slider" id="imageCornerRadius" min="0" max="50" value="0" oninput="updateImageCornerRadius()">
+                                <span class="slider-value" id="imageCornerRadiusValue">0px</span>
+                            </div>
+                        </div>
+                        
+                        <div id="fullWidthImageOptions" style="display:none;">
+                            <div class="control-group">
+                                <label class="control-label">Image Height Coverage (%)</label>
+                                <div class="slider-control">
+                                    <input type="range" class="slider" id="imageCoverage" min="20" max="80" value="40" oninput="updateCanvas()">
+                                    <span class="slider-value" id="imageCoverageValue">40%</span>
+                                </div>
+                            </div>
+                            
+                            <div class="control-group">
+                                <label class="control-label">Image Position</label>
+                                <select class="control-select" id="imageVerticalPosition" onchange="toggleImageTextSpacing()">
+                                    <option value="top">Top of Canvas</option>
+                                    <option value="bottom">Bottom of Canvas</option>
+                                </select>
+                            </div>
+                            
+                            <div class="control-group" id="imageTextSpacingGroup" style="display:block;">
+                                <label class="control-label" id="imageTextSpacingLabel">Image-Text Spacing (Below Image)</label>
+                                <div class="slider-control">
+                                    <input type="range" class="slider" id="imageTextSpacing" min="0" max="100" value="30" oninput="updateCanvas()">
+                                    <span class="slider-value" id="imageTextSpacingValue">30px</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="standardImageOptions" style="display:block;">
+                            <div class="control-group">
+                                <label class="control-label">Image Position X</label>
+                                <div class="slider-control">
+                                    <input type="range" class="slider" id="imageX" min="-500" max="500" value="0" oninput="updateCanvas()">
+                                    <span class="slider-value" id="imageXValue">0</span>
+                                </div>
+                            </div>
+                            
+                            <div class="control-group">
+                                <label class="control-label">Image Position Y</label>
+                                <div class="slider-control">
+                                    <input type="range" class="slider" id="imageY" min="-500" max="500" value="0" oninput="updateCanvas()">
+                                    <span class="slider-value" id="imageYValue">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label">Upload Logo</label>
+                        <div class="file-upload-group" id="logoUploadGroup">
+                            <input type="file" class="control-input" id="logoUpload" accept="image/*" onchange="handleLogoUpload(event)">
+                            <button class="file-clear-btn" onclick="clearLogo()">×</button>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label">Logo Size (Original Size at Center)</label>
+                        <div class="slider-control">
+                            <input type="range" class="slider" id="logoScale" min="5" max="100" value="100" oninput="updateLogoScale()">
+                            <span class="slider-value" id="logoScaleValue" style="min-width: 120px;">100% (Original)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label">Logo Position</label>
+                        <select class="control-select" id="logoPosition" onchange="updateCanvas()">
+                            <option value="top-right">Top Right</option>
+                            <option value="top-left">Top Left</option>
+                            <option value="bottom-right">Bottom Right</option>
+                            <option value="bottom-left">Bottom Left</option>
+                        </select>
+                    </div>
+                    
+                    <div class="checkbox-control">
+                        <input type="checkbox" id="logoWhite" onchange="updateCanvas()">
+                        <label for="logoWhite">Make Logo White</label>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label">Logo Opacity</label>
+                        <div class="slider-control">
+                            <input type="range" class="slider" id="logoOpacity" min="0" max="100" value="100" oninput="updateCanvas()">
+                            <span class="slider-value" id="logoOpacityValue">100%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label">Page Margins</label>
+                        <div class="slider-control">
+                            <input type="range" class="slider" id="pageMargins" min="20" max="120" value="60" oninput="updateCanvas()">
+                            <span class="slider-value" id="pageMarginsValue">60px</span>
+                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Footer & Branding Accordion -->
+                <div class="accordion-section">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div class="accordion-title-wrapper">
+                            <div class="accordion-icon">🏷️</div>
+                            <div class="accordion-title">Footer & Branding</div>
+                        </div>
+                        <div class="accordion-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-inner">
+                            <div class="control-section">
+                    
+                    <div class="checkbox-control">
+                        <input type="checkbox" id="showFooter" checked onchange="updateCanvas()">
+                        <label for="showFooter">Show Footer Bar</label>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label">Footer Height (px)</label>
+                        <div class="slider-control">
+                            <input type="range" class="slider" id="footerHeight" min="40" max="120" value="60" oninput="updateFooterHeight()">
+                            <span class="slider-value" id="footerHeightValue">60px</span>
+                        </div>
+                    </div>
+                    
+                    <div class="checkbox-control">
+                        <input type="checkbox" id="showDate" checked onchange="updateCanvas()">
+                        <label for="showDate">Show Date</label>
+                    </div>
+                    
+                    <div class="checkbox-control">
+                        <input type="checkbox" id="showBrandName" checked onchange="toggleBrandNameInput()">
+                        <label for="showBrandName">Show Brand Name</label>
+                    </div>
+                    
+                    <div class="control-group" id="brandNameGroup" style="display:block;">
+                        <label class="control-label">Brand Name Text</label>
+                        <input type="text" class="control-input" id="brandNameText" value="PATRIKA" oninput="updateCanvas()">
+                    </div>
+                    
+                    <div class="checkbox-control">
+                        <input type="checkbox" id="showWatermark" onchange="toggleWatermarkOptions()">
+                        <label for="showWatermark">Show Watermark</label>
+                    </div>
+                    
+                    <div class="control-group" id="watermarkGroup" style="display:none;">
+                        <div class="checkbox-control">
+                            <input type="checkbox" id="useLogoAsWatermark" onchange="toggleWatermarkType()">
+                            <label for="useLogoAsWatermark">Use Logo as Watermark</label>
+                        </div>
+                        
+                        <div id="textWatermarkOptions" style="display:block;">
+                            <label class="control-label">Watermark Text</label>
+                            <input type="text" class="control-input" id="watermarkText" value="PATRIKA" oninput="updateCanvas()">
+                        </div>
+                        
+                        <div id="logoWatermarkOptions" style="display:none;">
+                            <div class="checkbox-control">
+                                <input type="checkbox" id="watermarkLogoWhite" onchange="updateCanvas()">
+                                <label for="watermarkLogoWhite">Make Logo White</label>
+                            </div>
+                        </div>
+                        
+                        <label class="control-label" style="margin-top: 15px;">Watermark Size</label>
+                        <div class="slider-control">
+                            <input type="range" class="slider" id="watermarkSize" min="50" max="300" value="150" oninput="updateWatermarkSize()">
+                            <span class="slider-value" id="watermarkSizeValue">150px</span>
+                        </div>
+                        
+                        <label class="control-label" style="margin-top: 15px;">Watermark Opacity</label>
+                        <div class="slider-control">
+                            <input type="range" class="slider" id="watermarkOpacity" min="1" max="20" value="5" oninput="updateWatermarkOpacity()">
+                            <span class="slider-value" id="watermarkOpacityValue">5%</span>
+                        </div>
+                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Action Buttons - Outside Accordion -->
+                <div class="action-section">
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" onclick="exportImage('png')">Export PNG</button>
+                        <button class="btn btn-secondary" onclick="exportImage('jpg')">Export JPG</button>
+                        <button class="btn btn-success" onclick="saveSettings()">💾 Save Settings</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Image Editor Modal -->
+    <div class="image-editor-modal" id="imageEditorModal">
+        <div class="image-editor-content">
+            <h2>Edit Image</h2>
+            <div class="editor-canvas-wrapper" id="editorCanvasWrapper">
+                <canvas id="editorCanvas"></canvas>
+                <div class="crop-box" id="cropBox">
+                    <div class="crop-handle nw"></div>
+                    <div class="crop-handle ne"></div>
+                    <div class="crop-handle sw"></div>
+                    <div class="crop-handle se"></div>
+                </div>
+            </div>
+            <div class="editor-controls">
+                <button class="btn btn-primary" onclick="applyCrop()">Apply Crop</button>
+                <button class="btn btn-secondary" onclick="resetCrop()">Reset</button>
+                <button class="btn btn-secondary" onclick="closeEditor()">Cancel</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let canvas = document.getElementById('newsCanvas');
+        let ctx = canvas.getContext('2d');
+        let currentPlatform = 'facebook';
+        let currentTemplate = 'modern';
+        let uploadedImage = null;
+        let uploadedLogo = null;
+        let originalLogoWidth = 0;
+        let originalLogoHeight = 0;
+        let imageOffsetX = 0;
+        let imageOffsetY = 0;
+        let editingImage = null;
+        let cropData = { x: 0, y: 0, width: 100, height: 100 };
+        let isDragging = false;
+        let isResizing = false;
+        let dragStartX = 0;
+        let dragStartY = 0;
+        let resizeHandle = '';
+        
+        const dimensions = {
+            facebook: {
+                post: { width: 1200, height: 630 },
+                square: { width: 1080, height: 1080 },
+                story: { width: 1080, height: 1920 },
+                cover: { width: 1640, height: 859 },
+                event: { width: 1920, height: 1080 }
+            },
+            instagram: {
+                post: { width: 1080, height: 1080 },
+                portrait: { width: 1080, height: 1350 },
+                landscape: { width: 1080, height: 608 },
+                story: { width: 1080, height: 1920 },
+                igtv: { width: 1080, height: 1350 }
+            },
+            twitter: {
+                post: { width: 1200, height: 675 },
+                square: { width: 1200, height: 1200 },
+                header: { width: 1500, height: 500 },
+                card: { width: 1200, height: 628 }
+            }
+        };
+        
+        let currentFormat = 'post'; // Track current format selection
+        
+        // Initialize
+        window.onload = function() {
+            loadSettings();
+            
+            // Set default platform and format
+            if (!currentFormat) {
+                setPlatformFormatInitial('facebook', 'post', '1200×630px');
+            }
+            
+            updateCanvasSize();
+            
+            // Ensure first accordion is open
+            const firstAccordion = document.querySelector('.accordion-header');
+            if (firstAccordion && !firstAccordion.classList.contains('active')) {
+                firstAccordion.classList.add('active');
+                firstAccordion.nextElementSibling.classList.add('active');
+            }
+            
+            // Event listeners
+            document.getElementById('showWatermark').addEventListener('change', toggleWatermarkOptions);
+            document.getElementById('showBrandName').addEventListener('change', toggleBrandNameInput);
+            document.getElementById('overlayText').addEventListener('change', toggleImageOptions);
+            document.getElementById('fullWidthImage').addEventListener('change', toggleFullWidthOptions);
+            document.getElementById('postFormat').addEventListener('change', toggleCustomResolution);
+            
+            // Double-click to edit image
+            canvas.addEventListener('dblclick', function(e) {
+                if (uploadedImage) {
+                    openImageEditor();
+                }
+            });
+            
+            // Crop box event listeners
+            setupCropHandlers();
+        };
+        
+        function setPlatformFormatInitial(platform, format, sizeText) {
+            currentPlatform = platform;
+            currentFormat = format;
+            
+            // Clear all existing highlights first
+            clearPlatformHighlights();
+            
+            // Set the first Facebook button as active by default
+            const fbBtn = document.querySelector('.platform-btn');
+            if (fbBtn) {
+                fbBtn.classList.add('active');
+                const currentFormatSpan = document.createElement('span');
+                currentFormatSpan.className = 'current-format';
+                currentFormatSpan.textContent = sizeText;
+                fbBtn.appendChild(currentFormatSpan);
+            }
+        }
+        
+        function syncColorInput(colorId) {
+            const picker = document.getElementById(colorId);
+            const input = document.getElementById(colorId + 'Code');
+            input.value = picker.value;
+            updateCanvas();
+        }
+        
+        function syncColorPicker(colorId) {
+            const input = document.getElementById(colorId + 'Code');
+            const picker = document.getElementById(colorId);
+            const value = input.value.trim();
+            
+            // Validate hex color
+            if (/^#[0-9A-F]{6}$/i.test(value)) {
+                picker.value = value;
+                updateCanvas();
+            }
+        }
+        
+        function setupCropHandlers() {
+            const cropBox = document.getElementById('cropBox');
+            const editorCanvas = document.getElementById('editorCanvas');
+            const wrapper = document.getElementById('editorCanvasWrapper');
+            
+            // Drag crop box
+            cropBox.addEventListener('mousedown', function(e) {
+                if (e.target.classList.contains('crop-handle')) {
+                    isResizing = true;
+                    resizeHandle = e.target.className.split(' ')[1];
+                } else {
+                    isDragging = true;
+                }
+                dragStartX = e.clientX - cropData.x;
+                dragStartY = e.clientY - cropData.y;
+                e.preventDefault();
+            });
+            
+            document.addEventListener('mousemove', function(e) {
+                if (!isDragging && !isResizing) return;
+                
+                const rect = wrapper.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                if (isDragging) {
+                    cropData.x = Math.max(0, Math.min(x - (cropData.width / 2), editorCanvas.width - cropData.width));
+                    cropData.y = Math.max(0, Math.min(y - (cropData.height / 2), editorCanvas.height - cropData.height));
+                } else if (isResizing) {
+                    handleResize(x, y);
+                }
+                
+                updateCropBox();
+            });
+            
+            document.addEventListener('mouseup', function() {
+                isDragging = false;
+                isResizing = false;
+                resizeHandle = '';
+            });
+        }
+        
+        function handleResize(mouseX, mouseY) {
+            const editorCanvas = document.getElementById('editorCanvas');
+            
+            switch(resizeHandle) {
+                case 'nw':
+                    const newWidth1 = cropData.x + cropData.width - mouseX;
+                    const newHeight1 = cropData.y + cropData.height - mouseY;
+                    if (newWidth1 > 20 && newHeight1 > 20) {
+                        cropData.width = newWidth1;
+                        cropData.height = newHeight1;
+                        cropData.x = mouseX;
+                        cropData.y = mouseY;
+                    }
+                    break;
+                case 'ne':
+                    const newWidth2 = mouseX - cropData.x;
+                    const newHeight2 = cropData.y + cropData.height - mouseY;
+                    if (newWidth2 > 20 && newHeight2 > 20) {
+                        cropData.width = newWidth2;
+                        cropData.height = newHeight2;
+                        cropData.y = mouseY;
+                    }
+                    break;
+                case 'sw':
+                    const newWidth3 = cropData.x + cropData.width - mouseX;
+                    const newHeight3 = mouseY - cropData.y;
+                    if (newWidth3 > 20 && newHeight3 > 20) {
+                        cropData.width = newWidth3;
+                        cropData.height = newHeight3;
+                        cropData.x = mouseX;
+                    }
+                    break;
+                case 'se':
+                    const newWidth4 = mouseX - cropData.x;
+                    const newHeight4 = mouseY - cropData.y;
+                    if (newWidth4 > 20 && newHeight4 > 20) {
+                        cropData.width = newWidth4;
+                        cropData.height = newHeight4;
+                    }
+                    break;
+            }
+            
+            // Keep within bounds
+            cropData.x = Math.max(0, cropData.x);
+            cropData.y = Math.max(0, cropData.y);
+            cropData.width = Math.min(cropData.width, editorCanvas.width - cropData.x);
+            cropData.height = Math.min(cropData.height, editorCanvas.height - cropData.y);
+        }
+        
+        function toggleCustomResolution() {
+            const format = document.getElementById('postFormat').value;
+            const customDiv = document.getElementById('customResolution');
+            customDiv.style.display = format === 'custom' ? 'block' : 'none';
+            
+            if (format === 'custom') {
+                clearPlatformHighlights();
+            } else if (format !== 'current') {
+                updateCanvasSize();
+            }
+        }
+        
+        function toggleWatermarkOptions() {
+            const showWatermark = document.getElementById('showWatermark').checked;
+            document.getElementById('watermarkGroup').style.display = showWatermark ? 'block' : 'none';
+            updateCanvas();
+        }
+        
+        function toggleWatermarkType() {
+            const useLogoAsWatermark = document.getElementById('useLogoAsWatermark').checked;
+            document.getElementById('textWatermarkOptions').style.display = useLogoAsWatermark ? 'none' : 'block';
+            document.getElementById('logoWatermarkOptions').style.display = useLogoAsWatermark ? 'block' : 'none';
+            updateCanvas();
+        }
+        
+        function toggleBrandNameInput() {
+            const showBrandName = document.getElementById('showBrandName').checked;
+            document.getElementById('brandNameGroup').style.display = showBrandName ? 'block' : 'none';
+            updateCanvas();
+        }
+        
+        function toggleWatermarkInput() {
+            const showWatermark = document.getElementById('showWatermark').checked;
+            document.getElementById('watermarkGroup').style.display = showWatermark ? 'block' : 'none';
+        }
+        
+        function toggleImageOptions() {
+            const overlayText = document.getElementById('overlayText').checked;
+            document.getElementById('overlayOpacityGroup').style.display = overlayText ? 'block' : 'none';
+            document.getElementById('imageLayoutOptions').style.display = overlayText ? 'none' : 'block';
+            updateCanvas();
+        }
+        
+        function toggleFullWidthOptions() {
+            const fullWidthImage = document.getElementById('fullWidthImage').checked;
+            document.getElementById('fullWidthImageOptions').style.display = fullWidthImage ? 'block' : 'none';
+            document.getElementById('standardImageOptions').style.display = fullWidthImage ? 'none' : 'block';
+            
+            // Show spacing control when full width is enabled
+            if (fullWidthImage) {
+                toggleImageTextSpacing();
+            }
+            
+            updateCanvas();
+        }
+        
+        function toggleImageTextSpacing() {
+            const fullWidthImage = document.getElementById('fullWidthImage').checked;
+            const imagePosition = document.getElementById('imageVerticalPosition').value;
+            const spacingGroup = document.getElementById('imageTextSpacingGroup');
+            const spacingLabel = document.getElementById('imageTextSpacingLabel');
+            
+            // Always show spacing control when full width image is enabled
+            if (fullWidthImage) {
+                spacingGroup.style.display = 'block';
+                // Update label based on position
+                if (imagePosition === 'top') {
+                    spacingLabel.textContent = 'Image-Text Spacing (Below Image)';
+                } else {
+                    spacingLabel.textContent = 'Text-Image Spacing (Above Image)';
+                }
+            } else {
+                spacingGroup.style.display = 'none';
+            }
+            
+            updateCanvas();
+        }
+        
+        function applyCustomResolution() {
+            const width = parseInt(document.getElementById('customWidth').value);
+            const height = parseInt(document.getElementById('customHeight').value);
+            
+            if (width > 0 && height > 0 && width <= 4000 && height <= 4000) {
+                clearPlatformHighlights();
+                canvas.width = width;
+                canvas.height = height;
+                updateCanvas();
+            }
+        }
+        
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const wasActive = header.classList.contains('active');
+            
+            // Close all accordions
+            document.querySelectorAll('.accordion-header').forEach(h => {
+                h.classList.remove('active');
+                h.nextElementSibling.classList.remove('active');
+            });
+            
+            // Open clicked accordion if it wasn't already open
+            if (!wasActive) {
+                header.classList.add('active');
+                content.classList.add('active');
+            }
+        }
+        
+        function togglePlatformMenu(platform) {
+            const menu = document.getElementById(platform + '-menu');
+            const btn = event.currentTarget;
+            const allMenus = document.querySelectorAll('.platform-menu');
+            const allBtns = document.querySelectorAll('.platform-btn');
+            
+            // Close all other menus
+            allMenus.forEach(m => {
+                if (m !== menu) m.classList.remove('show');
+            });
+            allBtns.forEach(b => {
+                if (b !== btn) b.classList.remove('open');
+            });
+            
+            // Toggle current menu
+            if (menu.classList.contains('show')) {
+                menu.classList.remove('show');
+                btn.classList.remove('open');
+            } else {
+                menu.classList.add('show');
+                btn.classList.add('open');
+            }
+        }
+        
+        function setPlatformFormat(platform, format, sizeText) {
+            currentPlatform = platform;
+            currentFormat = format;
+            
+            // Reset quick resize dropdown to "Current Size"
+            document.getElementById('postFormat').value = 'current';
+            
+            // Remove all active states and format displays
+            document.querySelectorAll('.platform-btn').forEach(btn => {
+                btn.classList.remove('active');
+                const formatSpan = btn.querySelector('.current-format');
+                if (formatSpan) {
+                    formatSpan.remove();
+                }
+            });
+            
+            // Add active state and format display only to selected platform
+            const platformBtn = event.currentTarget.closest('.platform-dropdown').querySelector('.platform-btn');
+            platformBtn.classList.add('active');
+            
+            // Add format indicator to active button only
+            const currentFormatSpan = document.createElement('span');
+            currentFormatSpan.className = 'current-format';
+            currentFormatSpan.textContent = sizeText;
+            platformBtn.appendChild(currentFormatSpan);
+            
+            // Close menu
+            document.querySelectorAll('.platform-menu').forEach(m => m.classList.remove('show'));
+            document.querySelectorAll('.platform-btn').forEach(b => b.classList.remove('open'));
+            
+            // Update canvas size
+            updateCanvasSize();
+        }
+        
+        function clearPlatformHighlights() {
+            // Remove all active states and format displays from platform buttons
+            document.querySelectorAll('.platform-btn').forEach(btn => {
+                btn.classList.remove('active');
+                const formatSpan = btn.querySelector('.current-format');
+                if (formatSpan) {
+                    formatSpan.remove();
+                }
+            });
+        }
+        
+        // Close menus when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.platform-dropdown')) {
+                document.querySelectorAll('.platform-menu').forEach(m => m.classList.remove('show'));
+                document.querySelectorAll('.platform-btn').forEach(b => b.classList.remove('open'));
+            }
+        });
+        
+        function selectTemplate(template) {
+            currentTemplate = template;
+            document.querySelectorAll('.template-card').forEach(card => card.classList.remove('active'));
+            event.target.classList.add('active');
+            updateCanvas();
+        }
+        
+        function toggleContentFields() {
+            const contentType = document.getElementById('contentType').value;
+            document.getElementById('newsFields').style.display = contentType === 'news' ? 'block' : 'none';
+            document.getElementById('quoteFields').style.display = contentType === 'quote' ? 'block' : 'none';
+            updateCanvas();
+        }
+        
+        function setBackgroundColor(color) {
+            document.getElementById('backgroundColor').value = color;
+            document.getElementById('backgroundColorCode').value = color;
+            updateCanvas();
+        }
+        
+        function updateCanvasSize() {
+            const format = document.getElementById('postFormat').value;
+            
+            // If using Quick Resize options (not "current"), clear platform highlights
+            if (format !== 'current' && format !== 'custom') {
+                clearPlatformHighlights();
+            }
+            
+            if (format === 'custom') {
+                clearPlatformHighlights();
+                return;
+            }
+            
+            if (format === 'current') {
+                // Use the current platform/format settings
+                const platformDimensions = dimensions[currentPlatform];
+                if (platformDimensions && platformDimensions[currentFormat]) {
+                    const size = platformDimensions[currentFormat];
+                    canvas.width = size.width;
+                    canvas.height = size.height;
+                }
+            } else {
+                // Using Quick Resize - map to generic dimensions
+                clearPlatformHighlights();
+                
+                let width, height;
+                switch(format) {
+                    case 'square':
+                        width = 1080;
+                        height = 1080;
+                        break;
+                    case 'landscape':
+                        width = 1920;
+                        height = 1080;
+                        break;
+                    case 'portrait':
+                        width = 1080;
+                        height = 1350;
+                        break;
+                    case 'story':
+                        width = 1080;
+                        height = 1920;
+                        break;
+                    default:
+                        width = 1080;
+                        height = 1080;
+                }
+                canvas.width = width;
+                canvas.height = height;
+            }
+            
+            updateCanvas();
+        }
+        
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = new Image();
+                    img.onload = function() {
+                        uploadedImage = img;
+                        document.getElementById('imageUploadGroup').classList.add('has-file');
+                        updateCanvas();
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        
+        function handleLogoUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = new Image();
+                    img.onload = function() {
+                        uploadedLogo = img;
+                        // Store original dimensions
+                        originalLogoWidth = img.width;
+                        originalLogoHeight = img.height;
+                        
+                        // Reset slider to 100% (original size)
+                        document.getElementById('logoScale').value = 100;
+                        updateLogoScale();
+                        
+                        document.getElementById('logoUploadGroup').classList.add('has-file');
+                        updateCanvas();
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        
+        function updateQuotePosition() {
+            const position = parseInt(document.getElementById('quoteTopPosition').value);
+            document.getElementById('quoteTopPositionValue').textContent = position + '%';
+            updateCanvas();
+        }
+        
+        function updateFooterHeight() {
+            const height = parseInt(document.getElementById('footerHeight').value);
+            document.getElementById('footerHeightValue').textContent = height + 'px';
+            updateCanvas();
+        }
+        
+        function updateWatermarkSize() {
+            const size = parseInt(document.getElementById('watermarkSize').value);
+            document.getElementById('watermarkSizeValue').textContent = size + 'px';
+            updateCanvas();
+        }
+        
+        function updateWatermarkOpacity() {
+            const opacity = parseInt(document.getElementById('watermarkOpacity').value);
+            document.getElementById('watermarkOpacityValue').textContent = opacity + '%';
+            updateCanvas();
+        }
+        
+        function updateImageCornerRadius() {
+            const radius = parseInt(document.getElementById('imageCornerRadius').value);
+            document.getElementById('imageCornerRadiusValue').textContent = radius + 'px';
+            updateCanvas();
+        }
+        
+        function updateLogoScale() {
+            const scale = parseInt(document.getElementById('logoScale').value);
+            const scaleValue = document.getElementById('logoScaleValue');
+            
+            if (uploadedLogo && originalLogoWidth > 0) {
+                const actualWidth = Math.round(originalLogoWidth * (scale / 100));
+                const actualHeight = Math.round(originalLogoHeight * (scale / 100));
+                
+                if (scale === 100) {
+                    scaleValue.textContent = `100% (${actualWidth}×${actualHeight}px)`;
+                } else {
+                    scaleValue.textContent = `${scale}% (${actualWidth}×${actualHeight}px)`;
+                }
+            } else {
+                scaleValue.textContent = scale === 100 ? '100% (Original)' : `${scale}%`;
+            }
+            
+            updateCanvas();
+        }
+        
+        function clearImage() {
+            uploadedImage = null;
+            document.getElementById('imageUpload').value = '';
+            document.getElementById('imageUploadGroup').classList.remove('has-file');
+            updateCanvas();
+        }
+        
+        function clearLogo() {
+            uploadedLogo = null;
+            originalLogoWidth = 0;
+            originalLogoHeight = 0;
+            document.getElementById('logoUpload').value = '';
+            document.getElementById('logoUploadGroup').classList.remove('has-file');
+            document.getElementById('logoScale').value = 100;
+            document.getElementById('logoScaleValue').textContent = '100% (Original)';
+            updateCanvas();
+        }
+        
+        function openImageEditor() {
+            if (!uploadedImage) return;
+            
+            editingImage = uploadedImage;
+            const modal = document.getElementById('imageEditorModal');
+            modal.style.display = 'flex';
+            
+            const editorCanvas = document.getElementById('editorCanvas');
+            const editorCtx = editorCanvas.getContext('2d');
+            
+            // Set canvas size to fit image
+            const maxWidth = 700;
+            const scale = Math.min(1, maxWidth / editingImage.width);
+            editorCanvas.width = editingImage.width * scale;
+            editorCanvas.height = editingImage.height * scale;
+            
+            // Draw image
+            editorCtx.drawImage(editingImage, 0, 0, editorCanvas.width, editorCanvas.height);
+            
+            // Initialize crop box
+            cropData = {
+                x: editorCanvas.width * 0.1,
+                y: editorCanvas.height * 0.1,
+                width: editorCanvas.width * 0.8,
+                height: editorCanvas.height * 0.8
+            };
+            
+            updateCropBox();
+        }
+        
+        function updateCropBox() {
+            const cropBox = document.getElementById('cropBox');
+            cropBox.style.left = cropData.x + 'px';
+            cropBox.style.top = cropData.y + 'px';
+            cropBox.style.width = cropData.width + 'px';
+            cropBox.style.height = cropData.height + 'px';
+        }
+        
+        function applyCrop() {
+            const editorCanvas = document.getElementById('editorCanvas');
+            const scale = editingImage.width / editorCanvas.width;
+            
+            // Create cropped image
+            const tempCanvas = document.createElement('canvas');
+            const tempCtx = tempCanvas.getContext('2d');
+            
+            tempCanvas.width = cropData.width * scale;
+            tempCanvas.height = cropData.height * scale;
+            
+            tempCtx.drawImage(
+                editingImage,
+                cropData.x * scale, cropData.y * scale,
+                cropData.width * scale, cropData.height * scale,
+                0, 0,
+                tempCanvas.width, tempCanvas.height
+            );
+            
+            // Convert to image
+            const croppedImg = new Image();
+            croppedImg.onload = function() {
+                uploadedImage = croppedImg;
+                closeEditor();
+                updateCanvas();
+            };
+            croppedImg.src = tempCanvas.toDataURL();
+        }
+        
+        function resetCrop() {
+            const editorCanvas = document.getElementById('editorCanvas');
+            cropData = {
+                x: 0,
+                y: 0,
+                width: editorCanvas.width,
+                height: editorCanvas.height
+            };
+            updateCropBox();
+        }
+        
+        function closeEditor() {
+            document.getElementById('imageEditorModal').style.display = 'none';
+        }
+        
+        function wrapText(ctx, text, x, y, maxWidth, lineHeight, maxLines = 999) {
+            if (!text) return y; // Return early if no text
+            
+            const words = text.split(' ');
+            let line = '';
+            let lines = [];
+            
+            for(let n = 0; n < words.length; n++) {
+                const testLine = line + words[n] + ' ';
+                const metrics = ctx.measureText(testLine);
+                if (metrics.width > maxWidth && n > 0) {
+                    lines.push(line.trim());
+                    line = words[n] + ' ';
+                } else {
+                    line = testLine;
+                }
+            }
+            lines.push(line.trim());
+            
+            // Use provided maxLines or calculate based on remaining canvas space
+            if (maxLines === 999) {
+                const showFooter = document.getElementById('showFooter').checked;
+                const footerHeight = showFooter ? parseInt(document.getElementById('footerHeight').value) : 0;
+                const remainingSpace = canvas.height - y - footerHeight - 20; // Leave 20px buffer
+                const possibleLines = Math.floor(remainingSpace / lineHeight);
+                maxLines = Math.max(1, possibleLines); // At least show 1 line
+            }
+            
+            lines = lines.slice(0, maxLines);
+            
+            const textAlign = document.getElementById('textAlign').value;
+            
+            lines.forEach((line, index) => {
+                let drawX = x;
+                if (textAlign === 'center') {
+                    const lineWidth = ctx.measureText(line).width;
+                    drawX = x + (maxWidth - lineWidth) / 2;
+                } else if (textAlign === 'right') {
+                    const lineWidth = ctx.measureText(line).width;
+                    drawX = x + maxWidth - lineWidth;
+                }
+                ctx.fillText(line, drawX, y + (index * lineHeight));
+            });
+            
+            return y + (lines.length * lineHeight);
+        }
+        
+        // Helper function to calculate logo position
+        function getLogoPosition(margin, logoWidth, logoHeight) {
+            const position = document.getElementById('logoPosition').value;
+            let x = margin;
+            let y = margin;
+            
+            switch(position) {
+                case 'top-right':
+                    x = Math.max(margin, canvas.width - margin - logoWidth);
+                    y = margin;
+                    break;
+                case 'top-left':
+                    x = margin;
+                    y = margin;
+                    break;
+                case 'bottom-right':
+                    x = Math.max(margin, canvas.width - margin - logoWidth);
+                    y = canvas.height - margin - logoHeight;
+                    break;
+                case 'bottom-left':
+                    x = margin;
+                    y = canvas.height - margin - logoHeight;
+                    break;
+            }
+            
+            return { x, y };
+        }
+        
+        function updateCanvas() {
+            const contentType = document.getElementById('contentType').value;
+            const backgroundColor = document.getElementById('backgroundColor').value;
+            const primaryTextColor = document.getElementById('primaryTextColor').value;
+            const accentColor = document.getElementById('accentColor').value;
+            const pageMargins = parseInt(document.getElementById('pageMargins').value);
+            const letterSpacing = parseFloat(document.getElementById('letterSpacing').value);
+            const lineHeight = parseInt(document.getElementById('lineHeight').value) / 100;
+            const overlayText = document.getElementById('overlayText').checked;
+            const overlayOpacity = parseInt(document.getElementById('overlayOpacity').value) / 100;
+            const enableShadow = document.getElementById('enableShadow').checked;
+            const showWatermark = document.getElementById('showWatermark').checked;
+            const watermarkText = document.getElementById('watermarkText').value;
+            const showDate = document.getElementById('showDate').checked;
+            const showFooter = document.getElementById('showFooter').checked;
+            const photoCredit = document.getElementById('photoCredit').value;
+            const logoOpacity = parseInt(document.getElementById('logoOpacity').value) / 100;
+            const logoWhite = document.getElementById('logoWhite').checked;
+            const logoScale = parseInt(document.getElementById('logoScale').value) / 100;
+            const headlineSize = parseInt(document.getElementById('headlineSize').value);
+            const subheadlineSize = parseInt(document.getElementById('subheadlineSize').value);
+            const bodySize = parseInt(document.getElementById('bodySize').value);
+            const footerSize = parseInt(document.getElementById('footerSize').value);
+            const categorySpacing = parseInt(document.getElementById('categorySpacing').value);
+            const categorySize = parseInt(document.getElementById('categorySize').value);
+            const headlineSubheadlineSpacing = parseInt(document.getElementById('headlineSubheadlineSpacing').value);
+            const subheadlineBodySpacing = parseInt(document.getElementById('subheadlineBodySpacing').value);
+            const fullWidthImage = document.getElementById('fullWidthImage').checked;
+            const imageCoverage = parseInt(document.getElementById('imageCoverage').value);
+            const imageVerticalPosition = document.getElementById('imageVerticalPosition').value;
+            const imageTextSpacing = parseInt(document.getElementById('imageTextSpacing').value);
+            const imageCornerRadius = parseInt(document.getElementById('imageCornerRadius').value);
+            
+            // Get fonts
+            const categoryFont = document.getElementById('categoryFont').value;
+            const headlineFont = document.getElementById('headlineFont').value;
+            const subheadlineFont = document.getElementById('subheadlineFont').value;
+            const bodyFont = document.getElementById('bodyFont').value;
+            const footerFont = document.getElementById('footerFont').value;
+            
+            // Image positioning
+            imageOffsetX = parseInt(document.getElementById('imageX').value);
+            imageOffsetY = parseInt(document.getElementById('imageY').value);
+            
+            // Update displays
+            document.getElementById('pageMarginsValue').textContent = pageMargins + 'px';
+            document.getElementById('letterSpacingValue').textContent = letterSpacing + 'px';
+            document.getElementById('lineHeightValue').textContent = lineHeight.toFixed(1);
+            document.getElementById('logoOpacityValue').textContent = Math.round(logoOpacity * 100) + '%';
+            document.getElementById('headlineSizeValue').textContent = headlineSize;
+            document.getElementById('subheadlineSizeValue').textContent = subheadlineSize;
+            document.getElementById('bodySizeValue').textContent = bodySize;
+            document.getElementById('footerSizeValue').textContent = footerSize;
+            document.getElementById('categorySpacingValue').textContent = categorySpacing + 'px';
+            document.getElementById('categorySizeValue').textContent = categorySize;
+            document.getElementById('headlineSubheadlineSpacingValue').textContent = headlineSubheadlineSpacing + 'px';
+            document.getElementById('subheadlineBodySpacingValue').textContent = subheadlineBodySpacing + 'px';
+            document.getElementById('overlayOpacityValue').textContent = Math.round(overlayOpacity * 100) + '%';
+            document.getElementById('imageCoverageValue').textContent = imageCoverage + '%';
+            document.getElementById('imageXValue').textContent = imageOffsetX;
+            document.getElementById('imageYValue').textContent = imageOffsetY;
+            document.getElementById('imageTextSpacingValue').textContent = imageTextSpacing + 'px';
+            
+            // Clear canvas with background
+            drawBackground();
+            
+            // Reset shadow
+            ctx.shadowColor = 'transparent';
+            ctx.shadowBlur = 0;
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = 0;
+            
+            // Draw based on template - ONLY 4 TEMPLATES
+            if (currentTemplate === 'modern') {
+                drawModern();
+            } else if (currentTemplate === 'editorial') {
+                drawEditorial();
+            } else if (currentTemplate === 'minimal') {
+                drawMinimal();
+            } else if (currentTemplate === 'bold') {
+                drawBold();
+            }
+            
+            function drawBackground() {
+                if (uploadedImage && overlayText) {
+                    drawFullImage();
+                    return;
+                }
+                
+                ctx.fillStyle = backgroundColor;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+            }
+            
+            function drawModern() {
+                const margin = pageMargins;
+                const contentWidth = canvas.width - (margin * 2);
+                let contentY = margin * 1.5;
+                let contentEndY = contentY;
+                
+                const category = document.getElementById('category').value;
+                const headline = document.getElementById('headline').value;
+                const subheadline = document.getElementById('subheadline').value;
+                const content = document.getElementById('content').value;
+                
+                // Handle full-width image if enabled and not overlay
+                let bottomImageReservedSpace = 0;
+                if (uploadedImage && !overlayText && fullWidthImage) {
+                    const imgHeight = canvas.height * (imageCoverage / 100);
+                    if (imageVerticalPosition === 'top') {
+                        drawPartialImage(0, 0, canvas.width, imgHeight, imageCornerRadius);
+                        contentY = imgHeight + imageTextSpacing;
+                    } else {
+                        // Reserve space for bottom image
+                        bottomImageReservedSpace = imgHeight + imageTextSpacing;
+                    }
+                }
+                
+                // Gradient accent bar at top (only if no top image or if there's overlay)
+                if (!uploadedImage || overlayText || !fullWidthImage || imageVerticalPosition !== 'top') {
+                    const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+                    gradient.addColorStop(0, accentColor);
+                    gradient.addColorStop(1, adjustColor(accentColor, 20));
+                    ctx.fillStyle = gradient;
+                    ctx.fillRect(0, 0, canvas.width, 5);
+                }
+                
+                // Category pill
+                if (category) {
+                    ctx.font = `600 ${categorySize}px ${categoryFont}`;
+                    const categoryPadding = 20;
+                    const categoryWidth = ctx.measureText(category.toUpperCase()).width + categoryPadding * 2;
+                    const categoryHeight = categorySize + 16;
+                    
+                    ctx.fillStyle = accentColor;
+                    roundRect(ctx, margin, contentY, categoryWidth, categoryHeight, categoryHeight / 2);
+                    ctx.fill();
+                    
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fillText(category.toUpperCase(), margin + categoryPadding, contentY + categoryHeight - 11);
+                    contentY += categoryHeight + categorySpacing;
+                    contentEndY = contentY;
+                }
+                
+                // Standard image with rounded corners (if not full width)
+                if (uploadedImage && !overlayText && !fullWidthImage) {
+                    const imgHeight = Math.min(canvas.height * 0.35, 400);
+                    drawPartialImage(margin, contentY, contentWidth, imgHeight, imageCornerRadius);
+                    contentY += imgHeight + margin * 0.7;
+                    contentEndY = contentY;
+                }
+                
+                // Set shadow if enabled
+                if (enableShadow) {
+                    ctx.shadowColor = 'rgba(0,0,0,0.3)';
+                    ctx.shadowBlur = 4;
+                    ctx.shadowOffsetX = 2;
+                    ctx.shadowOffsetY = 2;
+                }
+                
+                // Quote or News content
+                if (contentType === 'quote') {
+                    const quoteText = document.getElementById('quoteText').value;
+                    const authorName = document.getElementById('authorName').value;
+                    const authorTitle = document.getElementById('authorTitle').value;
+                    const quotePosition = parseInt(document.getElementById('quoteTopPosition').value);
+                    const quoteStartY = (canvas.height * quotePosition / 100);
+                    
+                    ctx.fillStyle = accentColor;
+                    ctx.font = `100px ${headlineFont}`;
+                    ctx.globalAlpha = 0.15;
+                    ctx.fillText('"', margin, quoteStartY + 30);
+                    ctx.globalAlpha = 1;
+                    
+                    ctx.fillStyle = primaryTextColor;
+                    ctx.font = `300 ${headlineSize * 0.8}px ${headlineFont}`;
+                    const quoteY = wrapText(ctx, quoteText, margin, quoteStartY + 20, contentWidth, headlineSize * lineHeight, 4);
+                    
+                    ctx.font = `600 18px ${bodyFont}`;
+                    ctx.fillText('— ' + authorName, margin, quoteY + 30);
+                    contentEndY = quoteY + 30;
+                    if (authorTitle) {
+                        ctx.font = `400 16px ${bodyFont}`;
+                        ctx.fillStyle = adjustColor(primaryTextColor, 40);
+                        ctx.fillText(authorTitle, margin, quoteY + 55);
+                        contentEndY = quoteY + 55;
+                    }
+                } else {
+                    // Headline
+                    ctx.fillStyle = primaryTextColor;
+                    ctx.font = `700 ${headlineSize}px ${headlineFont}`;
+                    ctx.letterSpacing = letterSpacing + 'px';
+                    const headlineY = wrapText(ctx, headline, margin, contentY, contentWidth, 
+                                              headlineSize * lineHeight, 999);
+                    contentY = headlineY + headlineSubheadlineSpacing;
+                    contentEndY = contentY;
+                    
+                    // Reset shadow for subheadline
+                    ctx.shadowColor = 'transparent';
+                    ctx.shadowBlur = 0;
+                    
+                    // Subheadline
+                    if (subheadline) {
+                        ctx.fillStyle = accentColor;
+                        ctx.font = `500 ${subheadlineSize}px ${subheadlineFont}`;
+                        contentY = wrapText(ctx, subheadline, margin, contentY, contentWidth, 
+                                          subheadlineSize * 1.2, 999);
+                        contentY += subheadlineBodySpacing;
+                        contentEndY = contentY;
+                    }
+                    
+                    // Content
+                    if (content) {
+                        ctx.fillStyle = adjustColor(primaryTextColor, 40);
+                        ctx.font = `400 ${bodySize}px ${bodyFont}`;
+                        contentEndY = wrapText(ctx, content, margin, contentY, contentWidth, 
+                               bodySize * 1.3, 999);
+                    }
+                }
+                
+                // Reset shadow
+                ctx.shadowColor = 'transparent';
+                ctx.shadowBlur = 0;
+                
+                // Draw bottom image with spacing if needed
+                if (uploadedImage && !overlayText && fullWidthImage && imageVerticalPosition === 'bottom') {
+                    const imgHeight = canvas.height * (imageCoverage / 100);
+                    const defaultImageY = canvas.height - imgHeight;
+                    const minImageY = contentEndY + imageTextSpacing;
+                    const actualImageY = Math.max(minImageY, defaultImageY);
+                    const actualImgHeight = canvas.height - actualImageY;
+                    
+                    if (actualImgHeight > 50) {
+                        drawPartialImage(0, actualImageY, canvas.width, actualImgHeight, imageCornerRadius);
+                    }
+                }
+                
+                // Logo
+                if (uploadedLogo) {
+                    const scaledWidth = originalLogoWidth * logoScale;
+                    const scaledHeight = originalLogoHeight * logoScale;
+                    const logoPos = getLogoPosition(margin, scaledWidth, scaledHeight);
+                    drawLogo(logoPos.x, logoPos.y, logoScale, logoOpacity, logoWhite);
+                }
+                
+                // Watermark
+                if (showWatermark && watermarkText) {
+                    const watermarkSize = parseInt(document.getElementById('watermarkSize').value);
+                    const watermarkOpacity = parseInt(document.getElementById('watermarkOpacity').value) / 100;
+                    const useLogoAsWatermark = document.getElementById('useLogoAsWatermark').checked;
+                    
+                    if (useLogoAsWatermark && uploadedLogo) {
+                        // Use logo as watermark
+                        const watermarkLogoWhite = document.getElementById('watermarkLogoWhite').checked;
+                        ctx.save();
+                        ctx.globalAlpha = watermarkOpacity;
+                        
+                        const logoRatio = originalLogoWidth / originalLogoHeight;
+                        let drawWidth = watermarkSize;
+                        let drawHeight = drawWidth / logoRatio;
+                        
+                        const x = (canvas.width - drawWidth) / 2;
+                        const y = (canvas.height - drawHeight) / 2;
+                        
+                        if (watermarkLogoWhite) {
+                            const tempCanvas = document.createElement('canvas');
+                            const tempCtx = tempCanvas.getContext('2d');
+                            tempCanvas.width = drawWidth;
+                            tempCanvas.height = drawHeight;
+                            
+                            tempCtx.drawImage(uploadedLogo, 0, 0, drawWidth, drawHeight);
+                            tempCtx.globalCompositeOperation = 'source-in';
+                            tempCtx.fillStyle = '#ffffff';
+                            tempCtx.fillRect(0, 0, drawWidth, drawHeight);
+                            
+                            ctx.drawImage(tempCanvas, x, y);
+                        } else {
+                            ctx.drawImage(uploadedLogo, x, y, drawWidth, drawHeight);
+                        }
+                        
+                        ctx.restore();
+                    } else {
+                        // Use text watermark
+                        ctx.fillStyle = primaryTextColor;
+                        ctx.globalAlpha = watermarkOpacity;
+                        ctx.font = `900 ${watermarkSize}px ${headlineFont}`;
+                        ctx.textAlign = 'center';
+                        ctx.fillText(watermarkText, canvas.width / 2, canvas.height / 2);
+                        ctx.textAlign = 'left';
+                        ctx.globalAlpha = 1;
+                    }
+                }
+                
+                // Footer
+                if (showFooter) {
+                    const customFooterHeight = parseInt(document.getElementById('footerHeight').value);
+                    const footerY = canvas.height - customFooterHeight;
+                    const footerMargin = 30; // Fixed margin for footer content
+                    
+                    ctx.fillStyle = adjustColor(backgroundColor, -5);
+                    ctx.fillRect(0, footerY, canvas.width, customFooterHeight);
+                    
+                    const brandNameText = document.getElementById('brandNameText').value;
+                    const showBrandName = document.getElementById('showBrandName').checked;
+                    
+                    if (showBrandName && brandNameText) {
+                        ctx.fillStyle = accentColor;
+                        ctx.font = `600 ${footerSize + 2}px ${footerFont}`;
+                        ctx.fillText(brandNameText, footerMargin, footerY + (customFooterHeight / 2) + 5);
+                    }
+                    
+                    if (showDate) {
+                        const now = new Date();
+                        const dateStr = now.toLocaleDateString('en-US', { 
+                            month: 'short', 
+                            day: 'numeric', 
+                            year: 'numeric'
+                        });
+                        ctx.fillStyle = adjustColor(primaryTextColor, 50);
+                        ctx.font = `400 ${footerSize - 1}px ${footerFont}`;
+                        ctx.textAlign = 'right';
+                        ctx.fillText(dateStr, canvas.width - footerMargin, footerY + (customFooterHeight / 2) + 5);
+                        ctx.textAlign = 'left';
+                    }
+                }
+            }
+            
+            function drawEditorial() {
+                const margin = pageMargins * 1.2;
+                const contentWidth = canvas.width - (margin * 2);
+                let contentY = margin * 1.5;
+                let contentEndY = contentY;
+                
+                // Handle full-width image at top first
+                if (uploadedImage && !overlayText && fullWidthImage && imageVerticalPosition === 'top') {
+                    const imgHeight = canvas.height * (imageCoverage / 100);
+                    drawPartialImage(0, 0, canvas.width, imgHeight, imageCornerRadius);
+                    contentY = imgHeight + imageTextSpacing;
+                    
+                    if (photoCredit) {
+                        ctx.fillStyle = primaryTextColor;
+                        ctx.globalAlpha = 0.4;
+                        ctx.font = `10px ${footerFont}`;
+                        ctx.fillText(photoCredit.toUpperCase(), margin, imgHeight + 12);
+                        ctx.globalAlpha = 1;
+                    }
+                }
+                
+                // Category - subtle and elegant
+                const category = document.getElementById('category').value;
+                if (category) {
+                    ctx.fillStyle = primaryTextColor;
+                    ctx.globalAlpha = 0.5;
+                    ctx.font = `400 ${categorySize - 3}px ${categoryFont}`;
+                    ctx.letterSpacing = '2px';
+                    ctx.fillText(category.toUpperCase(), margin, contentY);
+                    ctx.globalAlpha = 1;
+                    contentY += categorySpacing;
+                    contentEndY = contentY;
+                }
+                
+                // Set shadow if enabled
+                if (enableShadow) {
+                    ctx.shadowColor = 'rgba(0,0,0,0.2)';
+                    ctx.shadowBlur = 2;
+                    ctx.shadowOffsetX = 1;
+                    ctx.shadowOffsetY = 1;
+                }
+                
+                if (contentType === 'quote') {
+                    const quoteText = document.getElementById('quoteText').value;
+                    const authorName = document.getElementById('authorName').value;
+                    const authorTitle = document.getElementById('authorTitle').value;
+                    const quotePosition = parseInt(document.getElementById('quoteTopPosition').value);
+                    const quoteStartY = (canvas.height * quotePosition / 100);
+                    
+                    ctx.fillStyle = primaryTextColor;
+                    ctx.globalAlpha = 0.06;
+                    ctx.font = `200px Georgia, serif`;
+                    ctx.fillText('"', margin - 30, quoteStartY + 60);
+                    ctx.globalAlpha = 1;
+                    
+                    ctx.fillStyle = primaryTextColor;
+                    ctx.font = `300 ${headlineSize}px ${headlineFont}`;
+                    ctx.letterSpacing = letterSpacing + 'px';
+                    const quoteY = wrapText(ctx, quoteText, margin, quoteStartY + 50, contentWidth, 
+                                          headlineSize * lineHeight * 1.2, 4);
+                    
+                    ctx.font = `700 16px ${bodyFont}`;
+                    ctx.fillText(authorName + ',', margin, quoteY + 50);
+                    ctx.font = `400 16px ${bodyFont}`;
+                    ctx.fillStyle = adjustColor(primaryTextColor, 30);
+                    ctx.fillText(' ' + authorTitle, margin + ctx.measureText(authorName + ',').width, quoteY + 50);
+                    contentEndY = quoteY + 50;
+                } else {
+                    const headline = document.getElementById('headline').value;
+                    ctx.fillStyle = primaryTextColor;
+                    ctx.font = `400 ${headlineSize}px ${headlineFont}`;
+                    ctx.letterSpacing = letterSpacing + 'px';
+                    contentY = wrapText(ctx, headline, margin, contentY, contentWidth, 
+                                      headlineSize * lineHeight * 1.1, 999);
+                    contentEndY = contentY;
+                    
+                    ctx.shadowColor = 'transparent';
+                    ctx.shadowBlur = 0;
+                    
+                    const subheadline = document.getElementById('subheadline').value;
+                    if (subheadline) {
+                        contentY += headlineSubheadlineSpacing;
+                        ctx.fillStyle = adjustColor(primaryTextColor, 25);
+                        ctx.font = `300 ${subheadlineSize}px ${subheadlineFont}`;
+                        contentY = wrapText(ctx, subheadline, margin, contentY, contentWidth, 
+                                          subheadlineSize * 1.3, 999);
+                        contentEndY = contentY;
+                    }
+                    
+                    const content = document.getElementById('content').value;
+                    if (content) {
+                        contentY += subheadlineBodySpacing;
+                        ctx.fillStyle = adjustColor(primaryTextColor, 35);
+                        ctx.font = `400 ${bodySize}px ${bodyFont}`;
+                        contentEndY = wrapText(ctx, content, margin, contentY, contentWidth, 
+                               bodySize * 1.3, 999);
+                    }
+                }
+                
+                ctx.shadowColor = 'transparent';
+                ctx.shadowBlur = 0;
+                
+                // Image placement (bottom only or standard if not full width)
+                if (uploadedImage && !overlayText) {
+                    if (fullWidthImage && imageVerticalPosition === 'bottom') {
+                        const imgHeight = canvas.height * (imageCoverage / 100);
+                        const defaultImageY = canvas.height - imgHeight;
+                        const minImageY = contentEndY + imageTextSpacing;
+                        const actualImageY = Math.max(minImageY, defaultImageY);
+                        const actualImgHeight = canvas.height - actualImageY;
+                        
+                        if (actualImgHeight > 50) {
+                            drawPartialImage(0, actualImageY, canvas.width, actualImgHeight, imageCornerRadius);
+                            
+                            if (photoCredit) {
+                                ctx.fillStyle = primaryTextColor;
+                                ctx.globalAlpha = 0.4;
+                                ctx.font = `10px ${footerFont}`;
+                                ctx.fillText(photoCredit.toUpperCase(), margin, actualImageY - 8);
+                                ctx.globalAlpha = 1;
+                            }
+                        }
+                    } else if (!fullWidthImage) {
+                        // Standard placement
+                        const imgY = canvas.height * 0.55;
+                        const imgHeight = canvas.height * 0.28;
+                        drawPartialImage(margin, imgY, contentWidth, imgHeight, imageCornerRadius);
+                        
+                        if (photoCredit) {
+                            ctx.fillStyle = primaryTextColor;
+                            ctx.globalAlpha = 0.4;
+                            ctx.font = `10px ${footerFont}`;
+                            ctx.fillText(photoCredit.toUpperCase(), margin, imgY + imgHeight + 12);
+                            ctx.globalAlpha = 1;
+                        }
+                    }
+                }
+                
+                // Logo
+                if (uploadedLogo) {
+                    const scaledWidth = originalLogoWidth * logoScale;
+                    const scaledHeight = originalLogoHeight * logoScale;
+                    const logoPos = getLogoPosition(margin, scaledWidth, scaledHeight);
+                    drawLogo(logoPos.x, logoPos.y, logoScale, logoOpacity * 0.6, logoWhite);
+                }
+                
+                // Watermark
+                if (showWatermark && watermarkText) {
+                    const watermarkSize = parseInt(document.getElementById('watermarkSize').value);
+                    const watermarkOpacity = parseInt(document.getElementById('watermarkOpacity').value) / 100;
+                    const useLogoAsWatermark = document.getElementById('useLogoAsWatermark').checked;
+                    
+                    if (useLogoAsWatermark && uploadedLogo) {
+                        // Use logo as watermark
+                        const watermarkLogoWhite = document.getElementById('watermarkLogoWhite').checked;
+                        ctx.save();
+                        ctx.globalAlpha = watermarkOpacity;
+                        
+                        const logoRatio = originalLogoWidth / originalLogoHeight;
+                        let drawWidth = watermarkSize;
+                        let drawHeight = drawWidth / logoRatio;
+                        
+                        const x = (canvas.width - drawWidth) / 2;
+                        const y = (canvas.height - drawHeight) / 2;
+                        
+                        if (watermarkLogoWhite) {
+                            const tempCanvas = document.createElement('canvas');
+                            const tempCtx = tempCanvas.getContext('2d');
+                            tempCanvas.width = drawWidth;
+                            tempCanvas.height = drawHeight;
+                            
+                            tempCtx.drawImage(uploadedLogo, 0, 0, drawWidth, drawHeight);
+                            tempCtx.globalCompositeOperation = 'source-in';
+                            tempCtx.fillStyle = primaryTextColor;
+                            tempCtx.fillRect(0, 0, drawWidth, drawHeight);
+                            
+                            ctx.drawImage(tempCanvas, x, y);
+                        } else {
+                            ctx.drawImage(uploadedLogo, x, y, drawWidth, drawHeight);
+                        }
+                        
+                        ctx.restore();
+                    } else {
+                        // Use text watermark
+                        ctx.fillStyle = primaryTextColor;
+                        ctx.globalAlpha = watermarkOpacity;
+                        ctx.font = `900 ${watermarkSize}px ${headlineFont}`;
+                        ctx.textAlign = 'center';
+                        ctx.fillText(watermarkText, canvas.width / 2, canvas.height / 2);
+                        ctx.textAlign = 'left';
+                        ctx.globalAlpha = 1;
+                    }
+                }
+                
+                // Footer - Minimal style
+                if (showFooter) {
+                    const customFooterHeight = parseInt(document.getElementById('footerHeight').value);
+                    const footerY = canvas.height - customFooterHeight;
+                    const footerMargin = 30; // Fixed margin for footer content
+                    
+                    // Add subtle footer background
+                    ctx.fillStyle = adjustColor(backgroundColor, -3);
+                    ctx.fillRect(0, footerY, canvas.width, customFooterHeight);
+                    
+                    const brandNameText = document.getElementById('brandNameText').value;
+                    const showBrandName = document.getElementById('showBrandName').checked;
+                    
+                    if (showDate) {
+                        const now = new Date();
+                        const dateStr = now.toLocaleDateString('en-US', { 
+                            month: 'long', 
+                            day: 'numeric', 
+                            year: 'numeric'
+                        }).toUpperCase();
+                        
+                        ctx.fillStyle = primaryTextColor;
+                        ctx.globalAlpha = 0.3;
+                        ctx.font = `${footerSize - 4}px ${footerFont}`;
+                        ctx.letterSpacing = '1px';
+                        ctx.fillText(dateStr, footerMargin, footerY + (customFooterHeight / 2) + 5);
+                        ctx.globalAlpha = 1;
+                    }
+                    
+                    if (showBrandName && brandNameText) {
+                        ctx.textAlign = 'right';
+                        ctx.fillStyle = primaryTextColor;
+                        ctx.globalAlpha = 0.3;
+                        ctx.font = `${footerSize - 3}px ${footerFont}`;
+                        ctx.fillText(brandNameText, canvas.width - footerMargin, footerY + (customFooterHeight / 2) + 5);
+                        ctx.textAlign = 'left';
+                        ctx.globalAlpha = 1;
+                    }
+                }
+            }
+            
+            function drawMinimal() {
+                const margin = pageMargins * 2;
+                const contentWidth = canvas.width - (margin * 2);
+                let contentY = margin * 1.8;
+                let contentEndY = contentY;
+                
+                // Handle full-width image at top
+                if (uploadedImage && !overlayText && fullWidthImage && imageVerticalPosition === 'top') {
+                    const imgHeight = canvas.height * (imageCoverage / 100);
+                    drawPartialImage(0, 0, canvas.width, imgHeight, imageCornerRadius);
+                    contentY = imgHeight + imageTextSpacing;
+                }
+                
+                // Subtle grid lines
+                ctx.strokeStyle = primaryTextColor;
+                ctx.globalAlpha = 0.02;
+                ctx.lineWidth = 0.5;
+                for (let i = 1; i < 4; i++) {
+                    ctx.beginPath();
+                    ctx.moveTo(canvas.width * i / 4, 0);
+                    ctx.lineTo(canvas.width * i / 4, canvas.height);
+                    ctx.stroke();
+                }
+                ctx.globalAlpha = 1;
+                
+                const category = document.getElementById('category').value;
+                if (category) {
+                    ctx.fillStyle = primaryTextColor;
+                    ctx.globalAlpha = 0.4;
+                    ctx.font = `300 ${categorySize - 3}px ${categoryFont}`;
+                    ctx.letterSpacing = '3px';
+                    ctx.fillText(category.toUpperCase(), margin, contentY);
+                    ctx.globalAlpha = 1;
+                    contentY += categorySpacing + 20;
+                    contentEndY = contentY;
+                }
+                
+                if (enableShadow) {
+                    ctx.shadowColor = 'rgba(0,0,0,0.1)';
+                    ctx.shadowBlur = 1;
+                    ctx.shadowOffsetX = 0;
+                    ctx.shadowOffsetY = 1;
+                }
+                
+                if (contentType === 'quote') {
+                    const quoteText = document.getElementById('quoteText').value;
+                    const authorName = document.getElementById('authorName').value;
+                    const quotePosition = parseInt(document.getElementById('quoteTopPosition').value);
+                    const quoteStartY = (canvas.height * quotePosition / 100);
+                    
+                    ctx.fillStyle = primaryTextColor;
+                    ctx.font = `300 ${headlineSize * 0.9}px ${headlineFont}`;
+                    const quoteY = wrapText(ctx, quoteText, margin, quoteStartY, contentWidth, 
+                                          headlineSize * lineHeight * 1.3, 3);
+                    
+                    ctx.font = `400 ${footerSize}px ${footerFont}`;
+                    ctx.fillText('— ' + authorName, margin, quoteY + 50);
+                    contentEndY = quoteY + 50;
+                } else {
+                    const headline = document.getElementById('headline').value;
+                    ctx.fillStyle = primaryTextColor;
+                    ctx.font = `300 ${headlineSize}px ${headlineFont}`;
+                    ctx.letterSpacing = letterSpacing + 'px';
+                    contentY = wrapText(ctx, headline, margin, contentY, contentWidth, 
+                                      headlineSize * lineHeight * 1.2, 999);
+                    contentY += headlineSubheadlineSpacing;
+                    contentEndY = contentY;
+                    
+                    ctx.shadowColor = 'transparent';
+                    ctx.shadowBlur = 0;
+                    
+                    // Thin divider line
+                    ctx.strokeStyle = primaryTextColor;
+                    ctx.globalAlpha = 0.1;
+                    ctx.lineWidth = 0.5;
+                    ctx.beginPath();
+                    ctx.moveTo(margin, contentY);
+                    ctx.lineTo(margin + 50, contentY);
+                    ctx.stroke();
+                    ctx.globalAlpha = 1;
+                    contentY += 10;
+                    
+                    const subheadline = document.getElementById('subheadline').value;
+                    if (subheadline) {
+                        ctx.fillStyle = adjustColor(primaryTextColor, 35);
+                        ctx.font = `300 ${subheadlineSize}px ${subheadlineFont}`;
+                        contentY = wrapText(ctx, subheadline, margin, contentY, contentWidth, 
+                                subheadlineSize * 1.3, 999);
+                        contentY += subheadlineBodySpacing;
+                        contentEndY = contentY;
+                    }
+                    
+                    const content = document.getElementById('content').value;
+                    if (content) {
+                        ctx.fillStyle = adjustColor(primaryTextColor, 45);
+                        ctx.font = `300 ${bodySize}px ${bodyFont}`;
+                        contentEndY = wrapText(ctx, content, margin, contentY, contentWidth, 
+                               bodySize * 1.4, 999);
+                    }
+                }
+                
+                ctx.shadowColor = 'transparent';
+                ctx.shadowBlur = 0;
+                
+                // Handle bottom image for minimal template with spacing
+                if (uploadedImage && !overlayText && fullWidthImage && imageVerticalPosition === 'bottom') {
+                    const imgHeight = canvas.height * (imageCoverage / 100);
+                    const defaultImageY = canvas.height - imgHeight;
+                    const minImageY = contentEndY + imageTextSpacing;
+                    const actualImageY = Math.max(minImageY, defaultImageY);
+                    const actualImgHeight = canvas.height - actualImageY;
+                    
+                    if (actualImgHeight > 50) {
+                        drawPartialImage(0, actualImageY, canvas.width, actualImgHeight, imageCornerRadius);
+                    }
+                }
+                
+                // Logo
+                if (uploadedLogo) {
+                    const scaledWidth = originalLogoWidth * logoScale * 0.75;
+                    const scaledHeight = originalLogoHeight * logoScale * 0.75;
+                    const logoPos = getLogoPosition(margin, scaledWidth, scaledHeight);
+                    drawLogo(logoPos.x, logoPos.y, logoScale * 0.75, logoOpacity * 0.3, logoWhite);
+                }
+                
+                // Watermark
+                if (showWatermark && watermarkText) {
+                    const watermarkSize = parseInt(document.getElementById('watermarkSize').value);
+                    const watermarkOpacity = parseInt(document.getElementById('watermarkOpacity').value) / 100;
+                    const useLogoAsWatermark = document.getElementById('useLogoAsWatermark').checked;
+                    
+                    if (useLogoAsWatermark && uploadedLogo) {
+                        // Use logo as watermark
+                        const watermarkLogoWhite = document.getElementById('watermarkLogoWhite').checked;
+                        ctx.save();
+                        ctx.globalAlpha = watermarkOpacity;
+                        
+                        const logoRatio = originalLogoWidth / originalLogoHeight;
+                        let drawWidth = watermarkSize;
+                        let drawHeight = drawWidth / logoRatio;
+                        
+                        const x = (canvas.width - drawWidth) / 2;
+                        const y = (canvas.height - drawHeight) / 2;
+                        
+                        if (watermarkLogoWhite) {
+                            const tempCanvas = document.createElement('canvas');
+                            const tempCtx = tempCanvas.getContext('2d');
+                            tempCanvas.width = drawWidth;
+                            tempCanvas.height = drawHeight;
+                            
+                            tempCtx.drawImage(uploadedLogo, 0, 0, drawWidth, drawHeight);
+                            tempCtx.globalCompositeOperation = 'source-in';
+                            tempCtx.fillStyle = primaryTextColor;
+                            tempCtx.fillRect(0, 0, drawWidth, drawHeight);
+                            
+                            ctx.drawImage(tempCanvas, x, y);
+                        } else {
+                            ctx.drawImage(uploadedLogo, x, y, drawWidth, drawHeight);
+                        }
+                        
+                        ctx.restore();
+                    } else {
+                        // Use text watermark
+                        ctx.fillStyle = primaryTextColor;
+                        ctx.globalAlpha = watermarkOpacity;
+                        ctx.font = `900 ${watermarkSize}px ${headlineFont}`;
+                        ctx.textAlign = 'center';
+                        ctx.fillText(watermarkText, canvas.width / 2, canvas.height / 2);
+                        ctx.textAlign = 'left';
+                        ctx.globalAlpha = 1;
+                    }
+                }
+                
+                // Ultra-minimal footer
+                if (showFooter) {
+                    const customFooterHeight = parseInt(document.getElementById('footerHeight').value);
+                    const footerY = canvas.height - customFooterHeight;
+                    const footerMargin = 30; // Fixed margin for footer content
+                    
+                    // Subtle footer background
+                    ctx.fillStyle = adjustColor(backgroundColor, -2);
+                    ctx.fillRect(0, footerY, canvas.width, customFooterHeight);
+                    
+                    const brandNameText = document.getElementById('brandNameText').value;
+                    const showBrandName = document.getElementById('showBrandName').checked;
+                    
+                    if (showDate) {
+                        const now = new Date();
+                        const dateStr = now.toLocaleDateString('en-US', { 
+                            year: 'numeric',
+                            month: '2-digit',
+                            day: '2-digit'
+                        });
+                        
+                        ctx.fillStyle = primaryTextColor;
+                        ctx.globalAlpha = 0.2;
+                        ctx.font = `${footerSize - 4}px ${footerFont}`;
+                        ctx.fillText(dateStr, footerMargin, footerY + (customFooterHeight / 2) + 5);
+                    }
+                    
+                    if (showBrandName && brandNameText) {
+                        ctx.fillStyle = primaryTextColor;
+                        ctx.globalAlpha = 0.2;
+                        ctx.font = `${footerSize - 3}px ${footerFont}`;
+                        ctx.textAlign = 'right';
+                        ctx.fillText(brandNameText, canvas.width - footerMargin, footerY + (customFooterHeight / 2) + 5);
+                        ctx.textAlign = 'left';
+                    }
+                    
+                    ctx.globalAlpha = 1;
+                }
+            }
+            
+            function drawBold() {
+                const margin = pageMargins * 0.8;
+                const contentWidth = canvas.width - (margin * 2);
+                let contentY = margin;
+                let contentEndY = contentY;
+                
+                // Dynamic gradient background
+                const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+                gradient.addColorStop(0, accentColor);
+                gradient.addColorStop(1, adjustColor(accentColor, -30));
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                // Geometric accent shapes
+                ctx.fillStyle = 'rgba(255,255,255,0.1)';
+                ctx.beginPath();
+                ctx.moveTo(0, canvas.height * 0.3);
+                ctx.lineTo(canvas.width * 0.3, 0);
+                ctx.lineTo(0, 0);
+                ctx.fill();
+                
+                const category = document.getElementById('category').value;
+                if (category) {
+                    ctx.fillStyle = 'rgba(255,255,255,0.08)';
+                    ctx.font = `900 ${canvas.width/6}px ${headlineFont}`;
+                    ctx.textAlign = 'center';
+                    
+                    const firstWord = category.split(' ')[0].toUpperCase();
+                    ctx.fillText(firstWord, canvas.width/2, canvas.height/2);
+                    ctx.textAlign = 'left';
+                }
+                
+                // Handle full-width image at top for bold template
+                if (uploadedImage && !overlayText && fullWidthImage && imageVerticalPosition === 'top') {
+                    const imgHeight = canvas.height * (imageCoverage / 100);
+                    drawPartialImage(0, 0, canvas.width, imgHeight, imageCornerRadius);
+                    contentY = imgHeight + imageTextSpacing;
+                } else {
+                    contentY = margin + 30;
+                }
+                
+                // Category banner
+                if (category) {
+                    ctx.save();
+                    ctx.translate(0, contentY);
+                    ctx.rotate(-0.02);
+                    
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fillRect(margin - 30, -5, ctx.measureText(category.toUpperCase()).width + 80, categorySize + 26);
+                    
+                    ctx.fillStyle = accentColor;
+                    ctx.font = `800 ${categorySize + 2}px ${categoryFont}`;
+                    ctx.fillText(category.toUpperCase(), margin, categorySize + 4);
+                    
+                    ctx.restore();
+                    contentY += categorySize + 26 + categorySpacing;
+                    contentEndY = contentY;
+                }
+                
+                // Image with dramatic angle (only if not full width)
+                if (uploadedImage && !overlayText && !fullWidthImage) {
+                    const imgHeight = canvas.height * 0.35;
+                    ctx.save();
+                    if (imageCornerRadius > 0) {
+                        // Use rounded corners if set
+                        roundRect(ctx, margin, contentY, contentWidth, imgHeight, imageCornerRadius);
+                        ctx.clip();
+                        drawPartialImage(margin, contentY, contentWidth, imgHeight, 0);
+                    } else {
+                        // Keep dramatic angle for 0 radius
+                        ctx.beginPath();
+                        ctx.moveTo(margin, contentY);
+                        ctx.lineTo(canvas.width - margin, contentY - 15);
+                        ctx.lineTo(canvas.width - margin, contentY + imgHeight);
+                        ctx.lineTo(margin, contentY + imgHeight + 15);
+                        ctx.closePath();
+                        ctx.clip();
+                        drawPartialImage(margin, contentY - 15, contentWidth, imgHeight + 30, 0);
+                    }
+                    ctx.restore();
+                    contentY += imgHeight + margin;
+                    contentEndY = contentY;
+                }
+                
+                // Enable shadow for bold template
+                if (enableShadow) {
+                    ctx.shadowColor = 'rgba(0,0,0,0.4)';
+                    ctx.shadowBlur = 10;
+                    ctx.shadowOffsetX = 0;
+                    ctx.shadowOffsetY = 4;
+                }
+                
+                if (contentType === 'quote') {
+                    const quoteText = document.getElementById('quoteText').value;
+                    const authorName = document.getElementById('authorName').value;
+                    const quotePosition = parseInt(document.getElementById('quoteTopPosition').value);
+                    const quoteStartY = (canvas.height * quotePosition / 100);
+                    
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = `700 ${headlineSize * 0.9}px ${headlineFont}`;
+                    const quoteY = wrapText(ctx, '"' + quoteText + '"', margin, quoteStartY, contentWidth, 
+                                          headlineSize * lineHeight, 3);
+                    
+                    ctx.shadowColor = 'transparent';
+                    ctx.shadowBlur = 0;
+                    
+                    ctx.font = `600 20px ${bodyFont}`;
+                    ctx.fillStyle = '#ffff00';
+                    ctx.fillText('— ' + authorName.toUpperCase(), margin, quoteY + 40);
+                    contentEndY = quoteY + 40;
+                } else {
+                    const headline = document.getElementById('headline').value;
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = `900 ${headlineSize * 1.1}px ${headlineFont}`;
+                    ctx.letterSpacing = '-1px';
+                    contentY = wrapText(ctx, headline.toUpperCase(), margin, contentY, contentWidth, 
+                                      headlineSize * lineHeight * 0.95, 999);
+                    
+                    ctx.shadowColor = 'transparent';
+                    ctx.shadowBlur = 0;
+                    contentY += headlineSubheadlineSpacing;
+                    contentEndY = contentY;
+                    
+                    const subheadline = document.getElementById('subheadline').value;
+                    if (subheadline) {
+                        ctx.fillStyle = 'rgba(255,255,255,0.2)';
+                        ctx.fillRect(margin - 10, contentY - 5, contentWidth + 20, subheadlineSize + 10);
+                        
+                        ctx.fillStyle = '#ffffff';
+                        ctx.font = `600 ${subheadlineSize}px ${subheadlineFont}`;
+                        contentY = wrapText(ctx, subheadline, margin, contentY + subheadlineSize - 5, contentWidth, 
+                               subheadlineSize * 1.3, 999);
+                        contentY += subheadlineBodySpacing;
+                        contentEndY = contentY;
+                    }
+                    
+                    const content = document.getElementById('content').value;
+                    if (content) {
+                        ctx.fillStyle = '#ffffff';
+                        ctx.globalAlpha = 0.9;
+                        ctx.font = `500 ${bodySize}px ${bodyFont}`;
+                        contentEndY = wrapText(ctx, content, margin, contentY, contentWidth, 
+                               bodySize * 1.4, 999);
+                        ctx.globalAlpha = 1;
+                    }
+                }
+                
+                ctx.shadowColor = 'transparent';
+                ctx.shadowBlur = 0;
+                
+                // Handle bottom image with spacing for bold template
+                if (uploadedImage && !overlayText && fullWidthImage && imageVerticalPosition === 'bottom') {
+                    const imgHeight = canvas.height * (imageCoverage / 100);
+                    const defaultImageY = canvas.height - imgHeight;
+                    const minImageY = contentEndY + imageTextSpacing;
+                    const actualImageY = Math.max(minImageY, defaultImageY);
+                    const actualImgHeight = canvas.height - actualImageY;
+                    
+                    if (actualImgHeight > 50) {
+                        drawPartialImage(0, actualImageY, canvas.width, actualImgHeight, imageCornerRadius);
+                    }
+                }
+                
+                // Logo
+                if (uploadedLogo) {
+                    const scaledWidth = originalLogoWidth * logoScale * 1.37;
+                    const scaledHeight = originalLogoHeight * logoScale * 1.37;
+                    const logoPos = getLogoPosition(margin, scaledWidth, scaledHeight);
+                    drawLogo(logoPos.x, logoPos.y, logoScale * 1.37, logoOpacity, logoWhite);
+                }
+                
+                // Watermark
+                if (showWatermark && watermarkText) {
+                    const watermarkSize = parseInt(document.getElementById('watermarkSize').value);
+                    const watermarkOpacity = parseInt(document.getElementById('watermarkOpacity').value) / 100;
+                    const useLogoAsWatermark = document.getElementById('useLogoAsWatermark').checked;
+                    
+                    if (useLogoAsWatermark && uploadedLogo) {
+                        // Use logo as watermark
+                        const watermarkLogoWhite = document.getElementById('watermarkLogoWhite').checked;
+                        ctx.save();
+                        ctx.globalAlpha = watermarkOpacity * 2; // Double opacity for visibility on gradient
+                        
+                        const logoRatio = originalLogoWidth / originalLogoHeight;
+                        let drawWidth = watermarkSize;
+                        let drawHeight = drawWidth / logoRatio;
+                        
+                        const x = (canvas.width - drawWidth) / 2;
+                        const y = (canvas.height - drawHeight) / 2;
+                        
+                        if (watermarkLogoWhite || true) { // Always white on gradient background
+                            const tempCanvas = document.createElement('canvas');
+                            const tempCtx = tempCanvas.getContext('2d');
+                            tempCanvas.width = drawWidth;
+                            tempCanvas.height = drawHeight;
+                            
+                            tempCtx.drawImage(uploadedLogo, 0, 0, drawWidth, drawHeight);
+                            tempCtx.globalCompositeOperation = 'source-in';
+                            tempCtx.fillStyle = '#ffffff';
+                            tempCtx.fillRect(0, 0, drawWidth, drawHeight);
+                            
+                            ctx.drawImage(tempCanvas, x, y);
+                        } else {
+                            ctx.drawImage(uploadedLogo, x, y, drawWidth, drawHeight);
+                        }
+                        
+                        ctx.restore();
+                    } else {
+                        // Use text watermark
+                        ctx.fillStyle = '#ffffff';
+                        ctx.globalAlpha = watermarkOpacity * 2; // Double opacity for visibility on gradient
+                        ctx.font = `900 ${watermarkSize}px ${headlineFont}`;
+                        ctx.textAlign = 'center';
+                        ctx.fillText(watermarkText, canvas.width / 2, canvas.height / 2);
+                        ctx.textAlign = 'left';
+                        ctx.globalAlpha = 1;
+                    }
+                }
+                
+                // Bold footer
+                if (showFooter) {
+                    const customFooterHeight = parseInt(document.getElementById('footerHeight').value);
+                    const footerY = canvas.height - customFooterHeight;
+                    const footerMargin = 30; // Fixed margin for footer content
+                    
+                    ctx.fillStyle = 'rgba(0,0,0,0.7)';
+                    ctx.beginPath();
+                    ctx.moveTo(0, footerY - 15);
+                    ctx.lineTo(canvas.width, footerY);
+                    ctx.lineTo(canvas.width, canvas.height);
+                    ctx.lineTo(0, canvas.height);
+                    ctx.closePath();
+                    ctx.fill();
+                    
+                    const brandNameText = document.getElementById('brandNameText').value;
+                    const showBrandName = document.getElementById('showBrandName').checked;
+                    
+                    if (showBrandName && brandNameText) {
+                        ctx.fillStyle = '#ffffff';
+                        ctx.font = `900 ${footerSize + 8}px ${footerFont}`;
+                        ctx.fillText(brandNameText, footerMargin, footerY + (customFooterHeight / 2) + 10);
+                    }
+                    
+                    if (showDate) {
+                        const now = new Date();
+                        const dateStr = now.toLocaleDateString('en-US', { 
+                            month: 'short', 
+                            day: 'numeric'
+                        }).toUpperCase();
+                        ctx.fillStyle = '#ffff00';
+                        ctx.font = `600 ${footerSize - 1}px ${footerFont}`;
+                        ctx.textAlign = 'right';
+                        ctx.fillText(dateStr, canvas.width - footerMargin, footerY + (customFooterHeight / 2) + 10);
+                        ctx.textAlign = 'left';
+                    }
+                }
+            }
+            
+            function drawFullImage() {
+                if (!uploadedImage) return;
+                
+                const imgRatio = uploadedImage.width / uploadedImage.height;
+                const canvasRatio = canvas.width / canvas.height;
+                
+                let drawWidth, drawHeight, offsetX = 0, offsetY = 0;
+                
+                if (imgRatio > canvasRatio) {
+                    drawHeight = canvas.height;
+                    drawWidth = drawHeight * imgRatio;
+                    offsetX = (canvas.width - drawWidth) / 2;
+                } else {
+                    drawWidth = canvas.width;
+                    drawHeight = drawWidth / imgRatio;
+                    offsetY = (canvas.height - drawHeight) / 2;
+                }
+                
+                // Apply manual offset
+                offsetX += imageOffsetX;
+                offsetY += imageOffsetY;
+                
+                ctx.drawImage(uploadedImage, offsetX, offsetY, drawWidth, drawHeight);
+                
+                // Only draw overlay if opacity is greater than 0
+                const overlayOpacity = parseInt(document.getElementById('overlayOpacity').value) / 100;
+                if (overlayOpacity > 0) {
+                    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+                    gradient.addColorStop(0, `rgba(0,0,0,${overlayOpacity * 0.6})`);
+                    gradient.addColorStop(1, `rgba(0,0,0,${overlayOpacity})`);
+                    ctx.fillStyle = gradient;
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                }
+                
+                // Draw footer over image if enabled
+                if (showFooter) {
+                    const customFooterHeight = parseInt(document.getElementById('footerHeight').value);
+                    const footerY = canvas.height - customFooterHeight;
+                    const footerMargin = 30; // Fixed margin for footer content
+                    
+                    ctx.fillStyle = 'rgba(0,0,0,0.5)';
+                    ctx.fillRect(0, footerY, canvas.width, customFooterHeight);
+                    
+                    const brandNameText = document.getElementById('brandNameText').value;
+                    const showBrandName = document.getElementById('showBrandName').checked;
+                    
+                    if (showBrandName && brandNameText) {
+                        ctx.fillStyle = '#ffffff';
+                        ctx.font = `600 ${footerSize + 2}px ${footerFont}`;
+                        ctx.fillText(brandNameText, footerMargin, footerY + (customFooterHeight / 2) + 5);
+                    }
+                    
+                    if (showDate) {
+                        const now = new Date();
+                        const dateStr = now.toLocaleDateString('en-US', { 
+                            month: 'short', 
+                            day: 'numeric', 
+                            year: 'numeric'
+                        });
+                        ctx.fillStyle = 'rgba(255,255,255,0.8)';
+                        ctx.font = `400 ${footerSize - 1}px ${footerFont}`;
+                        ctx.textAlign = 'right';
+                        ctx.fillText(dateStr, canvas.width - footerMargin, footerY + (customFooterHeight / 2) + 5);
+                        ctx.textAlign = 'left';
+                    }
+                }
+            }
+            
+            function drawPartialImage(x, y, width, height, cornerRadius = 0) {
+                if (!uploadedImage) return;
+                
+                ctx.save();
+                
+                // Apply rounded corners if radius is specified
+                if (cornerRadius > 0) {
+                    roundRect(ctx, x, y, width, height, cornerRadius);
+                    ctx.clip();
+                } else {
+                    ctx.beginPath();
+                    ctx.rect(x, y, width, height);
+                    ctx.clip();
+                }
+                
+                const imgRatio = uploadedImage.width / uploadedImage.height;
+                const boxRatio = width / height;
+                
+                let drawWidth, drawHeight, offsetX = x, offsetY = y;
+                
+                if (imgRatio > boxRatio) {
+                    drawHeight = height;
+                    drawWidth = drawHeight * imgRatio;
+                    offsetX = x + (width - drawWidth) / 2;
+                } else {
+                    drawWidth = width;
+                    drawHeight = drawWidth / imgRatio;
+                    offsetY = y + (height - drawHeight) / 2;
+                }
+                
+                // Apply manual offset only for standard mode, not full width
+                const fullWidthImage = document.getElementById('fullWidthImage').checked;
+                if (!fullWidthImage) {
+                    offsetX += imageOffsetX;
+                    offsetY += imageOffsetY;
+                }
+                
+                ctx.drawImage(uploadedImage, offsetX, offsetY, drawWidth, drawHeight);
+                ctx.restore();
+            }
+            
+            function drawLogo(x, y, scale, opacity, makeWhite) {
+                if (!uploadedLogo) return;
+                
+                ctx.save();
+                ctx.globalAlpha = opacity;
+                
+                // Calculate dimensions based on original size and scale
+                const drawWidth = originalLogoWidth * scale;
+                const drawHeight = originalLogoHeight * scale;
+                
+                // Limit to reasonable maximum dimensions to prevent oversized logos
+                const maxDimension = 300;
+                let finalWidth = drawWidth;
+                let finalHeight = drawHeight;
+                
+                if (finalWidth > maxDimension || finalHeight > maxDimension) {
+                    const ratio = Math.min(maxDimension / finalWidth, maxDimension / finalHeight);
+                    finalWidth *= ratio;
+                    finalHeight *= ratio;
+                }
+                
+                if (makeWhite) {
+                    // Create a temporary canvas to make the logo white
+                    const tempCanvas = document.createElement('canvas');
+                    const tempCtx = tempCanvas.getContext('2d');
+                    tempCanvas.width = finalWidth;
+                    tempCanvas.height = finalHeight;
+                    
+                    // Draw the logo
+                    tempCtx.drawImage(uploadedLogo, 0, 0, finalWidth, finalHeight);
+                    
+                    // Make it white
+                    tempCtx.globalCompositeOperation = 'source-in';
+                    tempCtx.fillStyle = '#ffffff';
+                    tempCtx.fillRect(0, 0, finalWidth, finalHeight);
+                    
+                    // Draw the white logo
+                    ctx.drawImage(tempCanvas, x, y);
+                } else {
+                    ctx.drawImage(uploadedLogo, x, y, finalWidth, finalHeight);
+                }
+                
+                ctx.restore();
+            }
+            
+            function roundRect(ctx, x, y, width, height, radius) {
+                ctx.beginPath();
+                ctx.moveTo(x + radius, y);
+                ctx.lineTo(x + width - radius, y);
+                ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+                ctx.lineTo(x + width, y + height - radius);
+                ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+                ctx.lineTo(x + radius, y + height);
+                ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+                ctx.lineTo(x, y + radius);
+                ctx.quadraticCurveTo(x, y, x + radius, y);
+                ctx.closePath();
+            }
+            
+            function adjustColor(hex, percent) {
+                const num = parseInt(hex.replace('#', ''), 16);
+                const amt = Math.round(2.55 * percent);
+                const R = (num >> 16) + amt;
+                const G = (num >> 8 & 0x00FF) + amt;
+                const B = (num & 0x0000FF) + amt;
+                return '#' + (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 +
+                    (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 +
+                    (B < 255 ? B < 1 ? 0 : B : 255))
+                    .toString(16).slice(1);
+            }
+        }
+        
+        function saveSettings() {
+            const settings = {
+                platform: currentPlatform,
+                platformFormat: currentFormat,
+                template: currentTemplate,
+                format: document.getElementById('postFormat').value,
+                contentType: document.getElementById('contentType').value,
+                category: document.getElementById('category').value,
+                categorySize: document.getElementById('categorySize').value,
+                headline: document.getElementById('headline').value,
+                headlineSize: document.getElementById('headlineSize').value,
+                headlineSubheadlineSpacing: document.getElementById('headlineSubheadlineSpacing').value,
+                subheadline: document.getElementById('subheadline').value,
+                subheadlineSize: document.getElementById('subheadlineSize').value,
+                subheadlineBodySpacing: document.getElementById('subheadlineBodySpacing').value,
+                content: document.getElementById('content').value,
+                bodySize: document.getElementById('bodySize').value,
+                quoteText: document.getElementById('quoteText').value,
+                authorName: document.getElementById('authorName').value,
+                authorTitle: document.getElementById('authorTitle').value,
+                quoteTopPosition: document.getElementById('quoteTopPosition').value,
+                photoCredit: document.getElementById('photoCredit').value,
+                categoryFont: document.getElementById('categoryFont').value,
+                headlineFont: document.getElementById('headlineFont').value,
+                subheadlineFont: document.getElementById('subheadlineFont').value,
+                bodyFont: document.getElementById('bodyFont').value,
+                footerFont: document.getElementById('footerFont').value,
+                footerSize: document.getElementById('footerSize').value,
+                categorySpacing: document.getElementById('categorySpacing').value,
+                letterSpacing: document.getElementById('letterSpacing').value,
+                lineHeight: document.getElementById('lineHeight').value,
+                enableShadow: document.getElementById('enableShadow').checked,
+                textAlign: document.getElementById('textAlign').value,
+                backgroundColor: document.getElementById('backgroundColor').value,
+                backgroundColorCode: document.getElementById('backgroundColorCode').value,
+                primaryTextColor: document.getElementById('primaryTextColor').value,
+                primaryTextColorCode: document.getElementById('primaryTextColorCode').value,
+                accentColor: document.getElementById('accentColor').value,
+                accentColorCode: document.getElementById('accentColorCode').value,
+                pageMargins: document.getElementById('pageMargins').value,
+                logoPosition: document.getElementById('logoPosition').value,
+                logoScale: document.getElementById('logoScale').value,
+                logoOpacity: document.getElementById('logoOpacity').value,
+                logoWhite: document.getElementById('logoWhite').checked,
+                overlayText: document.getElementById('overlayText').checked,
+                overlayOpacity: document.getElementById('overlayOpacity').value,
+                fullWidthImage: document.getElementById('fullWidthImage').checked,
+                imageCoverage: document.getElementById('imageCoverage').value,
+                imageVerticalPosition: document.getElementById('imageVerticalPosition').value,
+                imageTextSpacing: document.getElementById('imageTextSpacing').value,
+                imageCornerRadius: document.getElementById('imageCornerRadius').value,
+                showWatermark: document.getElementById('showWatermark').checked,
+                watermarkText: document.getElementById('watermarkText').value,
+                watermarkSize: document.getElementById('watermarkSize').value,
+                watermarkOpacity: document.getElementById('watermarkOpacity').value,
+                useLogoAsWatermark: document.getElementById('useLogoAsWatermark').checked,
+                watermarkLogoWhite: document.getElementById('watermarkLogoWhite').checked,
+                showDate: document.getElementById('showDate').checked,
+                showFooter: document.getElementById('showFooter').checked,
+                footerHeight: document.getElementById('footerHeight').value,
+                showBrandName: document.getElementById('showBrandName').checked,
+                brandNameText: document.getElementById('brandNameText').value,
+                imageX: document.getElementById('imageX').value,
+                imageY: document.getElementById('imageY').value
+            };
+            
+            localStorage.setItem('patrikaSettings', JSON.stringify(settings));
+            localStorage.setItem('patrikaSettingsExpiry', Date.now() + (24 * 60 * 60 * 1000));
+            
+            const btn = event.target;
+            const originalText = btn.textContent;
+            btn.textContent = '✓ Saved!';
+            btn.style.background = 'linear-gradient(135deg, #48bb78 0%, #38a169 100%)';
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.background = '';
+            }, 2000);
+        }
+        
+        function loadSettings() {
+            const expiry = localStorage.getItem('patrikaSettingsExpiry');
+            if (expiry && Date.now() < parseInt(expiry)) {
+                const settings = JSON.parse(localStorage.getItem('patrikaSettings') || '{}');
+                
+                Object.keys(settings).forEach(key => {
+                    const element = document.getElementById(key);
+                    if (element) {
+                        if (element.type === 'checkbox') {
+                            element.checked = settings[key];
+                        } else {
+                            element.value = settings[key];
+                        }
+                    }
+                });
+                
+                if (settings.template) {
+                    currentTemplate = settings.template;
+                    document.querySelectorAll('.template-card').forEach(card => {
+                        card.classList.remove('active');
+                        const templateName = card.querySelector('div').textContent.toLowerCase();
+                        if (templateName === currentTemplate) {
+                            card.classList.add('active');
+                        }
+                    });
+                }
+                
+                if (settings.platform) {
+                    currentPlatform = settings.platform;
+                    if (settings.platformFormat) {
+                        currentFormat = settings.platformFormat;
+                    }
+                }
+                
+                toggleContentFields();
+                toggleWatermarkOptions();
+                toggleBrandNameInput();
+                toggleImageOptions();
+                toggleFullWidthOptions();
+                toggleCustomResolution();
+                toggleImageTextSpacing();
+                
+                // Check if useLogoAsWatermark exists and handle it
+                if (settings.useLogoAsWatermark) {
+                    const useLogoCheckbox = document.getElementById('useLogoAsWatermark');
+                    if (useLogoCheckbox) {
+                        useLogoCheckbox.checked = settings.useLogoAsWatermark;
+                        toggleWatermarkType();
+                    }
+                }
+            }
+        }
+        
+        function exportImage(format) {
+            const link = document.createElement('a');
+            const fileName = `patrika_${currentPlatform}_${Date.now()}.${format}`;
+            
+            if (format === 'jpg') {
+                link.href = canvas.toDataURL('image/jpeg', 0.95);
+            } else {
+                link.href = canvas.toDataURL('image/png');
+            }
+            
+            link.download = fileName;
+            link.click();
+        }
+    </script>
+</body>
+</html>
